@@ -1,6 +1,6 @@
 ---
 name: technical-blog-writing
-description: "Write and improve B2B/technical SEO blog posts (listicles, reviews, comparisons, pricing pages, how-to guides, reference posts) that read like a sharp human practitioner and rank top-3 in 2026 search and AI Overviews. Covers de-AI voice, post-type structure, E-E-A-T, sourced data, FAQ/ItemList schema, internal linking, competitive gap audits, images, video, mermaid diagrams, AI-Overview optimization, real-time research tooling (EXA MCP, reddit-mcp, github-mcp), distribution (republishing with canonicals), and a pre-publish checklist. Use whenever drafting, rewriting, expanding, or auditing a blog/article. Universal rules apply to every post; the Authsome-specific section overrides where they conflict when the target site is authsome.ai (the authsome-web repo)."
+description: "Write and improve B2B/technical SEO blog posts (listicles, reviews, comparisons, pricing pages, how-to guides, reference posts) that read like a sharp human practitioner and rank top-3 in 2026 search and AI Overviews. Covers de-AI voice, post-type structure, E-E-A-T, sourced data, FAQ/ItemList schema, internal linking, competitive gap audits, images, video, mermaid diagrams, AI-Overview optimization, real-time research tooling (EXA MCP, reddit-mcp, github-mcp), distribution (republishing with canonicals), and a pre-publish checklist. Use whenever drafting, rewriting, expanding, or auditing a blog/article. Universal rules apply to every post; a per-site profile in the blog repo's .technical-blog-writing/ folder carries site-specific routes, frontmatter, capability sheet, and quality bar, and overrides the universal rules where they conflict."
 ---
 
 # Technical Blog Writing
@@ -10,6 +10,41 @@ Write the post a smart, busy practitioner in the target role would actually find
 When invoked: identify the **post type** (listicle/roundup, single-product review, head-to-head comparison, pricing/cost, how-to/guide, or reference), apply that type's structure plus the universal rules below, draft or edit, then run the pre-publish checklist. Do not narrate the rules back unless asked.
 
 Throughout, "the product" = whatever site/company you are writing for. Keep the product in a positive but honest light: recommend it where it genuinely fits, name one or two real tradeoffs (never self-sabotage), and make sure **every post names the product once and has one soft CTA** so readers do not leave without a path to act.
+
+## Site profile (do this first, before drafting or editing)
+
+Everything below is universal. Everything a specific blog needs on top of it (routes, frontmatter schema, which components render, what the product can truthfully claim, what has to pass before commit) lives in a **site profile** in the blog's own repo.
+
+**Step 1: find it.** Walk up from the current directory looking for `.technical-blog-writing/`. Stop at the repo root (the directory holding `.git`). The user is often several folders deep inside the site repo, so never assume the current directory is the root.
+
+```bash
+# from anywhere inside the blog repo
+git rev-parse --show-toplevel
+ls "$(git rev-parse --show-toplevel)/.technical-blog-writing/"
+```
+
+**Step 2a: found it.** Read `site-profile.md` and `learnings.md` before writing a word. The profile overrides the universal rules wherever the two conflict. Re-check the "Last verified" date on the capability sheet; if it is stale relative to the repo's changelog, verify before claiming anything present-tense.
+
+**Step 2b: not found.** Say so and offer to generate one:
+
+> No `.technical-blog-writing/` in this repo. I recommend generating a site profile first, so posts get the right frontmatter, components, internal-link paths, and product claims. Want me to?
+
+If the user says yes, build it from [references/site-profile-template.md](references/site-profile-template.md):
+
+1. **Recon the repo before asking anything.** Glob the content directories to get the routes and file paths. Read one existing post end to end for the frontmatter schema and the component vocabulary actually in use. Read `CLAUDE.md`, `README.md`, and `package.json` for URLs, org handle, and build/lint commands.
+2. **Pre-fill every section you inferred.** Mark each inferred value so the user can correct it.
+3. **Ask only for what the repo cannot tell you:** the capability sheet (what the product does and, more importantly, does NOT do), any voice overrides, and which quality gates are mandatory before commit.
+4. **Write `.technical-blog-writing/site-profile.md`** and have the user confirm the capability sheet line by line. That section is the one that causes false claims when it is wrong.
+5. **Create an empty `.technical-blog-writing/learnings.md`** next to it, so later corrections have somewhere to land.
+
+**Step 2c: user declines.** Write the post using the universal rules alone, then name what you had to guess in your response: frontmatter inferred from an existing post, components inferred from usage, internal links unverified. **With no capability sheet, make no product-capability claim at all.** Describe the product only in terms the repo's own README states verbatim.
+
+### Learnings split
+
+- A correction about **this site** (its schema, its taxonomy, its voice, a build gotcha) appends a dated line to `<repo-root>/.technical-blog-writing/learnings.md`.
+- A correction about **blog writing in general** appends a dated line to the Learnings log at the bottom of this skill.
+
+When in doubt, ask which one it is. Site learnings in the shared skill are how the skill gets polluted with one company's conventions.
 
 ## Hard rules (never break)
 
@@ -220,6 +255,7 @@ Format every quote block as a blockquote with the source on the line below: `> [
 - **Avoid cannibalization:** one canonical page per head term. A pillar owns the broad term and links down to the listicle; the listicle owns "best X tools" and links up. Do not let two pages chase the identical query; sharpen each title/intro and cross-link.
 - **Exact-match (or descriptive title-match) anchor text** when linking to the page that should own a term. Generic "click here" or "this post" anchors waste ranking signal.
 - **Fix internal-link rot:** every `/route` link must point to a real page. Audit periodically.
+- **Regenerate the slug list before adding any internal link.** Never link from memory or from what feels like a plausible slug. List the content directory, derive the real link paths, and link only what the listing returns. The site profile holds the exact command for this repo. Use full prefixed paths (`/blog/<slug>`), never bare slugs and never relative `../` hops, which break under any renderer that rewrites routes.
 
 ### Schema and protocols (hygiene minimum)
 
@@ -237,6 +273,16 @@ Per [Ahrefs' 1B-data-point analysis](https://ahrefs.com/blog/ai-overview-citatio
 - **Every cornerstone post ships with a paired YouTube video,** post URL in the video description, transcript published.
 - **Chase unlinked brand mentions** across newsletters, podcasts, and forum threads. Mentions beat links for LLM citation.
 - **Republish to dev.to, hashnode, or Medium WITH a canonical link back to the original.** Republishing without canonicals splits SEO juice and risks duplicate-content penalties; with canonicals it consolidates ranking and earns secondary audiences.
+
+## Three-stage workflow (any post grounded in breaking news)
+
+News posts are where fabrication risk peaks: the facts are fresh, secondary coverage is already garbled, and the pressure is to publish first. Ship every one of them through three separate passes.
+
+1. **Research.** Fetch the canonical primary source FIRST: the vendor blog, the SEC filing, the GitHub advisory, the official CVE record. Note the exact URL and the exact phrasing of every load-bearing claim. WebSearch and EXA are for *finding* sources, never for *substituting* them. A secondary article's summary of a primary source is not a source.
+2. **Draft.** Write against the research brief. Inline a source link on every specific number, date, CVE, vendor quote, and advisory ID.
+3. **Verify.** Adversarially fact-check as if trying to get the post retracted. Re-fetch every primary source. Soften any claim the source does not literally support. Strip any product-capability claim not on the site profile's capability sheet.
+
+**After commit, independently re-spot-check the most quantitative claims against the canonical URL.** Verifier passes miss things. The second pass catches them. This is not optional politeness, it is the step that keeps a wrong number from living on the site for a year.
 
 ## Research and distribution tooling
 
@@ -257,8 +303,26 @@ Use the right tooling so writing time goes into the writing, not the surfaces. A
 
 - **Republish queue:** every published post is republished to at least one of dev.to, hashnode, or Medium **with a canonical link back to the original**.
 - **YouTube companion:** pair every cornerstone post with a YouTube video. Embed the video on the post; link the post in the video description; publish the transcript.
-- **LinkedIn snippet + Reddit submission:** for news-style posts, produce a LinkedIn-snippet (hook + 2-3 sentences + "link in comments") and a Reddit submission (substance-led title ≤ 290 chars + 300-450 word body, link in first comment). Suggest 4-6 fitting subreddits.
+- **LinkedIn snippet + Reddit submission:** required for every news-style post. Full shapes in [Promo snippets](#promo-snippets-linkedin--reddit).
 - **Newsletter feed-out:** the RSS feed should flow into the company newsletter automatically.
+
+### Promo snippets (LinkedIn + Reddit)
+
+Ship these alongside any news-grounded post. Write them after the post, from the post, so the hook is a real insight and not a restated headline.
+
+**LinkedIn snippet** (this is the post body; the article link goes in the first comment, because in-body links suppress reach):
+
+- Hook line, 3-9 words, strong, breaking-news framing.
+- 2-3 short sentences naming the most-skipped insight, with one quoted phrase from the primary source.
+- Closing line: `Full breakdown 👇 in the comments` or similar.
+- One emoji max, optional.
+
+**Reddit submission:**
+
+- Title ≤ 290 chars, news-y, substance leads. The least clickbaity version that still surfaces the insight.
+- Body 300-450 words. Open with the most-skipped detail. Inline links to primary sources. Close with a one-sentence open question to drive comments.
+- Sign-off line: `Full writeup: [link in comment]`.
+- Suggest 4-6 subreddits that fit the topic. Check each one's self-promotion rules first; a link-dropped post in the wrong subreddit costs the account, not just the post.
 
 ## Competitive gap audit (before writing or to improve a ranking page)
 
@@ -281,6 +345,31 @@ Improving an existing ranking page (position 5-15, real impressions) beats writi
 - **Show your own product's UI**, not only competitors'.
 - **Every referenced image file must exist** (case-sensitive in prod). No filenames with spaces. Keep paths consistent.
 
+## Secret-shaped example credentials
+
+Code blocks in security and API posts routinely need example credentials (`sk_live_...`, `ghp_...`, `AKIA...`). A complete, real-looking literal in the markdown source trips GitHub push protection and blocks the commit, and worse, gets flagged by scanners downstream of anyone who forks the repo.
+
+Split the literal across runtime variables so no single line matches a secret pattern:
+
+```bash
+# Never paste a complete real-looking literal into markdown source
+PREFIX="sk_live_"
+SUFFIX="51HxYz...example"
+echo "${PREFIX}${SUFFIX}"
+```
+
+The rendered post still shows the reader a realistic value. The source file contains no scannable secret.
+
+## Quality gates before commit
+
+Every post clears these before it lands. The site profile holds the exact commands for the repo; the gates themselves are universal.
+
+- **The site builds.** A build catches MDX and type errors that no amount of grepping will. Confirm the route actually prerenders, do not just watch the build exit 0.
+- **Em-dash count is 0.** Grep the source file. This is the single most reliable AI tell and the easiest to miss by eye.
+- **Every internal link resolves to a file on disk.** Check each `/route/<slug>` against the content directory listing.
+- **An independent judge pass.** A second model or a fresh agent session, with no memory of writing the draft, reviews against this skill. The author-agent is the worst possible reviewer of its own draft.
+- **Canonical-source spot-check.** Re-fetch the primary URLs and confirm numbers, dates, quotes, and product names match verbatim.
+
 ## Anti-patterns (do not do)
 
 - Mass-producing thin, near-duplicate posts. Volume without depth gets sites penalized. Improve and consolidate instead.
@@ -295,6 +384,8 @@ Improving an existing ranking page (position 5-15, real impressions) beats writi
 
 ## Pre-publish checklist
 
+- [ ] Site profile read (or its absence flagged, with every guessed convention named); frontmatter matches its schema; only its allowed components used
+- [ ] Every product-capability claim traced to a line on the profile's capability sheet, and the sheet's verify date is current
 - [ ] Title ≤ 60 chars; meta description ≤ 156 chars; both start with the target keyword
 - [ ] Answer-first intro; title matches search intent
 - [ ] TL;DR + methodology block present (TL;DR is the AEO extraction surface)
@@ -326,154 +417,9 @@ Improving an existing ranking page (position 5-15, real impressions) beats writi
 - [ ] Post submitted to IndexNow on publish; in RSS feed
 - [ ] Republish plan: dev.to / hashnode / Medium with canonical tag
 - [ ] Product named once + one soft CTA + 3-5 cluster internal links
-- [ ] Build passes (catches MDX/type errors grep cannot)
+- [ ] Build passes (catches MDX/type errors grep cannot); em-dash grep returns 0; independent judge pass; canonical-source spot-check
+- [ ] Slug list regenerated before internal links were added; every link uses the full prefixed path
 - [ ] **Naive-reader gate:** wrote down the 5-10 questions a target reader would ask, handed the draft to a fresh agent session or second human with no project context, patched every gap they surfaced, iterated until they stop finding new ones. (Per Anthropic's [doc-coauthoring skill](https://github.com/anthropics/skills/blob/main/skills/doc-coauthoring/SKILL.md).)
-
-## Authsome-specific (when writing for authsome.ai)
-
-When the target site is the `authsome-web` repo (authsome.ai), apply everything above PLUS the following. These override universal rules where they conflict.
-
-### Routing: /blog vs /article
-
-Two surfaces, each with editorial intent:
-
-- **`/blog`** is original team work, product announcements, integration walkthroughs, opinion pieces. MDX in `content/blog/<slug>.mdx`. Signed `authors: [priyansh]` by convention.
-- **`/article`** is ecosystem coverage: vendor news, CVE roundups, model releases, standards-track drafts, trend writeups, field reports. MDX in `content/article/<slug>.mdx`. Signed `authors: [authsome]`.
-
-The seed file (`content/article/welcome-to-articles.mdx`, if present) is the canonical definition of the editorial split. Read it before writing any /article post.
-
-### Frontmatter (Contentlayer schema, identical for Blog and Article)
-
-```yaml
----
-title: "..."                              # required, ≤ 60 chars
-description: "..."                        # ≤ 156 chars, no em-dashes, keyword-first
-date: 2026-06-02                          # required, YYYY-MM-DD; today's actual date
-tags: [tag1, tag2, tag3]                  # 3-4 lowercase, from project taxonomy
-authors:
- - priyansh                              # for /blog
- # OR
- - authsome                              # for /article
-cover: /path/to/cover.webp                # required (at least 1 cover image)
-draft: false                              # default false
-noindex: false                            # default false; true for legal/internal
-summary: "..."                            # optional, distinct from description
----
-```
-
-### MDX components allowed
-
-Only these. Anything else breaks the build or renders ugly.
-
-- Fenced code blocks (` ```bash`, ` ```python`, ` ```mdx`, ` ```mermaid`) with a language hint.
-- Markdown tables.
-- `<Admonition type="warning|note|tip">...</Admonition>` for true asides (3 max per post).
-- Closing `<NextSteps>` block. Required at the end of every post:
-
-```mdx
-<NextSteps>
- <NextStepCard icon="rocket" title="Quickstart" description="..." href="https://authsome.ai/docs/quickstart" />
- <NextStepCard icon="shield" title="..." description="..." href="..." />
-</NextSteps>
-```
-
-Valid `icon` values: `rocket`, `shield`, `book`, `users`, `layers`.
-
-### Authsome capability sheet (ground truth, regenerate the date when you reverify)
-
-Last verified 2026-05-29. Do NOT state anything beyond this as present-tense capability.
-
-- Open source, MIT licensed, PyPI `authsome`. Local-first credential broker for AI agents.
-- Mechanic: `authsome login <provider>` once, then `authsome run -- <agent>` launches the agent under a local HTTPS proxy. Agent env holds only a PLACEHOLDER. Proxy matches destination and swaps in the real header on the outbound request. Library mode: `from authsome.context import AuthsomeContext`.
-- 45 bundled providers. **OpenAI IS bundled** (api-key). **GitHub IS bundled** (OAuth2). **Google IS bundled** (OAuth2, Gmail/Calendar/Drive). **Anthropic, AWS, Azure, Stripe are NOT bundled** (use a CUSTOM provider JSON in `~/.authsome/providers/<name>.json`).
-- Flows: PKCE, Device Code, Dynamic Client Registration (DCR), API key. NO "service account" flow.
-- AWS SigV4 / Azure Managed Identity / GCP Workload Identity Federation are NOT in scope for the broker. Short-lived STS / IdP-issued tokens via OIDC are the right primitive for those workloads.
-- Encrypted SQLite vault under `~/.authsome/`. Append-only JSONL audit log.
-- A global allow/deny proxy mode per run DOES exist.
-- Per-agent policy (deciding which agent may use which provider) does NOT ship today.
-- NOT shipped (never state present-tense): per-agent policy engine, multi-tenant vaults, OpenTelemetry export, native MCP tool, Homebrew, GitHub Actions integration, managed SaaS, Windows.
-
-Re-verify by reading `authsome-web/CLAUDE.md`, the upstream repo, and any product changelog newer than the date above. Update the date when the sheet still matches reality.
-
-### Voice for Authsome posts
-
-Override the universal "product named once + one CTA" rule with this tighter version:
-
-- **At most ONE in-body Authsome mention per /article post**, framed as a credential-angle observation, never a pitch. Plus the closing NextSteps card. For /blog posts, the universal rule applies.
-- **Lead with the topic, never with Authsome.** The headline says what happened in the world; the Authsome connection comes in a short closing section.
-- **Honest framing.** When the broker pattern does NOT solve the problem cleanly (renderer XSS, AWS SigV4, GCP Workload Identity Federation, JWT-in-the-frontend bugs), the post must SAY SO. "This is a different bug class that a credential broker does not fully solve" is the right energy. Never paper over a gap.
-
-### Cross-linking (full prefix paths, regenerate slug list before use)
-
-Before adding any internal link, regenerate the slug list:
-
-```bash
-ls authsome-web/content/blog/*.mdx | xargs -n1 basename | sed 's/.mdx$//' | sed 's|^|/blog/|'
-ls authsome-web/content/article/*.mdx | xargs -n1 basename | sed 's/.mdx$//' | sed 's|^|/article/|'
-```
-
-- Always use the full prefix: `/blog/<slug>` or `/article/<slug>`. Never bare slugs, never `../`.
-- 2 to 4 cross-links per post, evergreen-relevant only.
-- Anchor text is the destination post title (or its keyword), never "this post" or "click here".
-
-### 3-stage adversarial workflow (every news / /article post)
-
-For any post grounded in breaking news, ship through this pipeline (use the Workflow tool for batches > 1):
-
-1. **Research.** Fetch the canonical primary source FIRST (the vendor blog, the SEC filing, the GitHub advisory, the official CVE record). Note the exact URL and exact phrasing of every load-bearing claim. WebSearch and EXA MCP are for finding sources, not for substituting them.
-2. **Draft.** Write the post against the research brief. Inline source links on every specific number, date, CVE, vendor quote, or advisory ID.
-3. **Verify.** Adversarially fact-check: re-fetch the primary source, soften any unverifiable claim, strip any Authsome capability claim that is not on the capability sheet above. Run a separate OpenAI-judge pass at q5 before commit.
-
-After commit, independently re-spot-check the most quantitative claims against the canonical URL. Verifier errors happen; the second pass catches them.
-
-### Hosting and org URLs
-
-- Marketing: `https://authsome.ai`
-- Docs: `https://authsome.ai/docs` (Mintlify, proxied)
-- Quickstart (always in NextSteps): `https://authsome.ai/docs/quickstart`
-- GitHub org: `agentrhq` (NOT `agentr-labs`, despite what older docs say)
-- Source repo: `https://github.com/agentrhq/authsome`
-- Site repo: `https://github.com/agentrhq/authsome-web`
-
-### Promo snippets for /article posts (LinkedIn + Reddit)
-
-After every /article post, produce:
-
-**LinkedIn snippet** (the post body; article link goes in the first comment):
-
-- Hook line (3-9 words, strong, breaking-news framing).
-- 2-3 short sentences naming the most-skipped insight, with one quoted phrase from the primary source.
-- Closing line: `Full breakdown 👇 in the comments` or similar.
-- One emoji max, optional.
-
-**Reddit submission**:
-
-- Title: ≤ 290 chars, news-y, substance leads. The least-clickbaity version that still surfaces the insight.
-- Body: 300-450 words. Open with the most-skipped detail. Inline links to primary sources. Close with a one-sentence open question to drive comments.
-- Sign-off line: `Full writeup: [link in comment]`.
-- Suggest 4-6 fitting subreddits based on topic (r/programming, r/devops, r/MachineLearning, r/ClaudeAI, r/aws, r/cybersecurity, etc.).
-
-### Build, lint, judge (per-post quality bar)
-
-Every Authsome post must clear, before commit:
-
-- `cd authsome-web && npm run build` succeeds. Route prerenders to `.next/server/app/{blog,article}/<slug>.html`.
-- `grep -c '—' content/{blog,article}/<slug>.mdx` returns 0.
-- Internal-link resolution: every `/blog/<slug>` and `/article/<slug>` referenced exists on disk.
-- Independent OpenAI judge pass (see `judge_blogs.py`) returns `APPROVE q5` with `agree=true`.
-- Canonical source spot-check: re-fetch the primary URL and confirm specific numbers, dates, quotes, and product names match verbatim.
-
-### Secret-shaped test fixtures pattern
-
-When a code block in a post includes example credentials (`sk_live_...`, `ghp_...`, `AKIA...`, etc.), split the literal across runtime bash vars so GitHub push protection does not block the commit:
-
-```bash
-PREFIX="sk_live_"
-SUFFIX="51HxYz...example"
-echo "${PREFIX}${SUFFIX}"
-```
-
-Never paste a real-looking complete literal into the markdown source.
 
 ## Learnings log
 
@@ -483,3 +429,4 @@ Never paste a real-looking complete literal into the markdown source.
 - 2026-06-02: Hardened with 14 research-grounded additions from a multi-agent sweep of GitHub skill repos, B2B-SEO authorities (Ahrefs, Backlinko, Digital Applied), and de-AI-writing patterns (Wikipedia signs-of-AI, GPTZero burstiness, Frontiers 2025 grading study, MDN, Datadog/Microsoft/GitLab style guides, Anthropic doc-coauthoring skill). Headline additions: answer islands (134-167 word H2 blocks), burstiness rule, three human signals per 800 words, entity density floor, cornerstone length floor, off-page Ahrefs lever priority (YouTube > backlinks >> schema), naive-reader gate, MDN heading + link hygiene.
 - 2026-06-02: Added Authsome-specific section: /blog vs /article routing, Contentlayer frontmatter, MDX components allowed, capability sheet ground truth, voice override (1 mention max for /article, honest framing where the broker does not solve), cross-link slug-regen pattern, 3-stage adversarial workflow, hosting URLs, LinkedIn + Reddit promo snippet shapes, per-post build/lint/judge bar, secret-shaped fixture pattern.
 - 2026-06-02 (fourth pass): User's explicit additions + Priyansh's [Medium SEO guide](https://zriyansh.medium.com/as-a-technical-writer-know-seo-c62df581f8ff). Added: TL;DR-as-AEO-surface framing, video embeds (YouTube primary), mermaid diagrams, zoomable + lazy-loaded WebP/AVIF images with alt text + caption, ≥ 1 external link minimum, ≥ 1 image minimum, real Reddit/Quora/X user-voice quotes (with reddit-mcp tooling), commentary-not-info-dump voice, "write like people talk" framing, title ≤ 60 chars, meta description ≤ 156 chars, headings-as-questions, keyword density floor + ceiling, URL slug rules (keyword in slug, no dates), canonical tag, IndexNow, BreadcrumbList + visible breadcrumbs, RSS/llms.txt/agents.txt, 50%-longer-than-top-ranked rule, page-reachable-3-clicks, freshness floor (≤ 2 years), republish-with-canonical distribution, Research and distribution tooling section (EXA MCP, reddit-mcp, github-mcp, google-news-trends, keywordtool-guest, AnswerThePublic, Cora). Anti-pattern additions: synthetic user voice, republish without canonical, AMP (deprecated).
+- 2026-08-14: Made the skill site-agnostic. Pulled the Authsome-specific section out into [references/site-profile-template.md](references/site-profile-template.md) (blank template plus the Authsome profile as a worked example), and added the Site profile section: agent walks up to the repo root looking for `.technical-blog-writing/`, reads `site-profile.md` and `learnings.md` if present, otherwise offers to generate one by reconning the repo and asking only for the capability sheet, voice overrides, and quality gates. Promoted three genuinely universal pieces that were buried in the Authsome section: the three-stage research/draft/verify workflow, the LinkedIn + Reddit promo snippet shapes (which were also duplicated as a one-liner under Distribution, now merged), and the secret-shaped example-credential pattern. Generalized the slug-regen and build/lint/judge rules into the skill with the exact commands living in the profile. Site-specific corrections now go to the project's `learnings.md`, general ones stay here.
