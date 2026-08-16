@@ -1,0 +1,36 @@
+name: build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: stable
+
+      - name: Install litprompt
+        run: go install github.com/tgvashworth/litprompt@latest
+
+      - name: Check sources
+        run: make check
+
+      - name: Verify published skills are in sync
+        run: make verify
+
+      # Belt and braces: nothing in a -src tree may be named SKILL.md, or it
+      # would be discovered as a skill and ship author-only notes to installs.
+      - name: Assert no sources are discoverable as skills
+        run: |
+          if find . -path ./.git -prune -o -path '*-src/*' -name 'SKILL.md' -print | grep .; then
+            echo "ERROR: a source tree contains a literal SKILL.md (see above)."
+            echo "Sources must use the .src.md suffix so 'npx skills add' ignores them."
+            exit 1
+          fi
+          echo "ok: no SKILL.md inside any -src tree"
