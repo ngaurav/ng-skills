@@ -1,5 +1,3 @@
-<!-- litprompt marketing-src/technical-blog-writing/references/site-profile-template.src.md -->
-
 # Site profile template
 
 A site profile records everything about one blog that the universal rules in `SKILL.md` cannot know: where posts live, what the frontmatter schema is, which components render, what the product can actually do, and what has to pass before commit.
@@ -9,6 +7,19 @@ A site profile records everything about one blog that the universal rules in `SK
 **Filling it in:** read the repo before asking the user. Content globs give you the routes, one existing post gives you the frontmatter schema and the component vocabulary, `CLAUDE.md`/`README.md`/`package.json` give you URLs, org, and build commands. Ask the user only for what the repo cannot tell you: the capability sheet, the voice overrides, and which quality gates are mandatory.
 
 **Keep it true.** A stale capability sheet is worse than no capability sheet, because it produces confident false claims. Date it, and re-verify on every use.
+
+<!-- @
+Author-only. This file lives in marketing-src/ and builds into marketing/;
+edit it here, never the published copy. Notes like this one are stripped,
+including inside the fenced template blocks below, so the block an agent
+copies out stays clean, and nothing here ships to an installation.
+
+Two rules. Keep a comment on its own line: a trailing author-only comment at
+the end of a content line eats the newline and joins that line to the next one.
+And never write a comment-closing sequence inside the note itself, not even as
+an example, because it closes the block early and leaks the rest into output.
+-->
+
 
 ---
 
@@ -58,6 +69,13 @@ Only these render. Anything else breaks the build or looks wrong.
 - [component or markdown feature] [when to use it, any cap]
 - [required closing block, with a copy-pasteable example]
 
+<!-- @
+This section is phrased as "name what is NOT included, explicitly" rather than
+just listing features. A sheet that only lists what exists still lets the model
+infer neighbouring capabilities and state them present-tense. The explicit
+negative list is what stops that, so keep the NOT-included bullets even when
+they feel redundant.
+-->
 ## Capability sheet (ground truth)
 
 Last verified [YYYY-MM-DD]. Do NOT state anything beyond this as present-tense capability.

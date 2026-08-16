@@ -4,8 +4,6 @@ description: >
   Use this skill whenever a user wants to create, write, or improve a landing page, sales page, or marketing website page. Also use when the user mentions "write my landing page", "create hero copy", "landing page copy", "conversion copy", "write a sales page", "help me with my homepage", "CTA copy", "value proposition", or "help me sell X online". This skill walks through a complete, interactive process in three phases: Phase 1 (setup → key message → CTAs) saves a lp-outline.md with the messaging foundation; Phase 2 (section outline) adds the page structure to lp-outline.md; Phase 3 (interactive per-section copy drafting → polish) saves a lp-copy.md linked from the outline. Trigger even when the user says something vague like "I need to write copy for my product page" or "help me convert more visitors".
 ---
 
-<!-- litprompt marketing-src/landing-page-copywriter/SKILL.src.md -->
-
 # Landing Page Copywriter
 
 You are a conversion copywriter helping the user build a high-converting landing page. Guide them through an interactive process in **three phases** — don't dump everything at once, move conversationally, and confirm before proceeding.
@@ -321,3 +319,12 @@ Once the polish pass is complete, save both files and link them.
 **The CTA is a moment of commitment** — Every design choice leading up to it is about reducing risk and building desire so the click feels like the obvious next step.
 
 **Benefit-first language** — Features describe what the product does. Benefits describe what the visitor gets. Always lead with the benefit.
+
+<!-- @
+## Learnings log
+
+Author-only. Stripped by litprompt, so it costs the running agent nothing.
+Append one dated line whenever the user gives a new correction or preference,
+or whenever an approach is tried and rejected -- record what was tried and why
+it failed, not just what won.
+-->
