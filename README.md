@@ -4,12 +4,18 @@ Agent skills, grouped by category. Each category has two trees: a private source
 tree you edit, and a published tree that gets installed.
 
 ```
-marketing-src/<skill-name>/SKILL.src.md    <- edit this, never installed
-marketing/<skill-name>/SKILL.md            <- generated, committed, installed
+<category>-src/<skill-name>/SKILL.src.md   <- edit this, never installed
+<category>/<skill-name>/SKILL.md           <- generated, committed, installed
 ```
 
 Sources carry internal notes and learnings that must not reach an installation.
 [litprompt](https://github.com/tgvashworth/litprompt) strips them on the way out.
+
+## engineering
+
+| Skill | What it does |
+|---|---|
+| [agent-native-cli](engineering/agent-native-cli/SKILL.md) | Design and audit CLIs that agents drive through shell execution: non-interactive execution, uniform `--json` with a stdout/stderr channel contract, enumerating errors, token-efficient schemas, `agent-context` introspection, async job ledgers, profiles. Carries a blocker/friction/optimization rubric for reviewing an existing CLI. |
 
 ## marketing
 
