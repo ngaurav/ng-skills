@@ -27,7 +27,7 @@ build:
 	@for src in $(SOURCES); do \
 		out=$$(echo "$$src" | sed 's|-src/|/|; s|\.src\.md$$|.md|'); \
 		mkdir -p "$$(dirname "$$out")"; \
-		$(LITPROMPT) build "$$src" -o "$$out" --header short -q || exit 1; \
+		$(LITPROMPT) build "$$src" -o "$$out" -q || exit 1; \
 		echo "  $$src -> $$out"; \
 	done
 	@echo "ok: built $(words $(SOURCES)) file(s)"
