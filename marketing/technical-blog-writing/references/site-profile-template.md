@@ -1,5 +1,3 @@
-<!-- litprompt marketing-src/technical-blog-writing/references/site-profile-template.src.md -->
-
 # Site profile template
 
 A site profile records everything about one blog that the universal rules in `SKILL.md` cannot know: where posts live, what the frontmatter schema is, which components render, what the product can actually do, and what has to pass before commit.
