@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "skill-build-system": {
+      "source": "agentrhq/agentr-context",
+      "sourceType": "github",
+      "skillPath": "skills/skill-build-system/SKILL.md",
+      "computedHash": "55d7e003c91bcc36066de9798439f08a31e2ed732abfe0eafd7f9173ae882507"
+    }
+  }
+}
