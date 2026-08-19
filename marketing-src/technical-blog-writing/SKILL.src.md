@@ -1,6 +1,8 @@
 ---
 name: technical-blog-writing
 description: "Write and improve B2B/technical SEO blog posts (listicles, reviews, comparisons, pricing pages, how-to guides, reference posts) that read like a sharp human practitioner and rank top-3 in 2026 search and AI Overviews. Covers de-AI voice, post-type structure, E-E-A-T, sourced data, FAQ/ItemList schema, internal linking, competitive gap audits, images, video, mermaid diagrams, AI-Overview optimization, real-time research tooling (EXA MCP, reddit-mcp, github-mcp), distribution (republishing with canonicals), and a pre-publish checklist. Use whenever drafting, rewriting, expanding, or auditing a blog/article. Universal rules apply to every post; a per-site profile in the blog repo's .technical-blog-writing/ folder carries site-specific routes, frontmatter, capability sheet, and quality bar, and overrides the universal rules where they conflict."
+build-system: Generated. Edit the source file, not this file.
+repo: ngaurav/ng-skills
 ---
 
 # Technical Blog Writing

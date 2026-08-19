@@ -2,6 +2,8 @@
 name: landing-page-copywriter
 description: >
   Use this skill whenever a user wants to create, write, or improve a landing page, sales page, or marketing website page. Also use when the user mentions "write my landing page", "create hero copy", "landing page copy", "conversion copy", "write a sales page", "help me with my homepage", "CTA copy", "value proposition", or "help me sell X online". This skill walks through a complete, interactive process in three phases: Phase 1 (setup → key message → CTAs) saves a lp-outline.md with the messaging foundation; Phase 2 (section outline) adds the page structure to lp-outline.md; Phase 3 (interactive per-section copy drafting → polish) saves a lp-copy.md linked from the outline. Trigger even when the user says something vague like "I need to write copy for my product page" or "help me convert more visitors".
+build-system: Generated. Edit the source file, not this file.
+repo: ngaurav/ng-skills
 ---
 
 # Landing Page Copywriter

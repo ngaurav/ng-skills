@@ -135,7 +135,7 @@ marketing/technical-blog-writing/          <- generated
 ### Adding a skill
 
 1. `mkdir -p marketing-src/<skill-name>`
-2. Write `marketing-src/<skill-name>/SKILL.src.md` with frontmatter (`name`, `description`).
+2. Write `marketing-src/<skill-name>/SKILL.src.md` with frontmatter (`name`, `description`, `build-system`; `repo` optional).
 3. `make build` — every `*.src.md` under a `-src` tree is picked up automatically.
 4. Commit the source and the generated output, and add a row to the table above.
 
