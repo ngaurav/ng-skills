@@ -54,7 +54,15 @@ make clean          # delete the published trees (they are fully machine-owned)
 ```
 
 The published trees **are committed**, so `npx skills add` and plain symlinks
-both work without a toolchain. CI runs `make verify` on every push and PR.
+both work without a toolchain.
+
+**Building locally is optional.** CI runs the build on every pull request and
+commits the regenerated published tree back to the branch, so a source-only
+commit is enough — edit the `*.src.md`, push, and let CI publish. Install the
+toolchain when you want to see the output before pushing.
+
+On a push to `main` and on pull requests from forks, CI cannot commit, so it
+fails instead with a message to run `make build` yourself.
 
 ## Authoring
 
