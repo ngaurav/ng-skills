@@ -16,6 +16,7 @@ Sources carry internal notes and learnings that must not reach an installation.
 | Skill | Version | What it does |
 |---|---|---|
 | [agent-native-cli](engineering/agent-native-cli/SKILL.md) | 1.0.0 | Design and audit CLIs that agents drive through shell execution: non-interactive execution, uniform `--json` with a stdout/stderr channel contract, enumerating errors, token-efficient schemas, `agent-context` introspection, async job ledgers, profiles. Carries a blocker/friction/optimization rubric for reviewing an existing CLI. |
+| [wysiwyg-html-editor](engineering/wysiwyg-html-editor/SKILL.md) | 1.0.0 | Serve a folder of HTML over a local server that lets the user highlight text or click an element and leave an inline comment; the agent edits the page and it reloads with a walkthrough of the changes. Ships `lib/` and `scripts/`. Includes print-fidelity guidance for resumes and reports. |
 
 ## marketing
 
@@ -175,11 +176,27 @@ marketing/technical-blog-writing/          <- generated
 
 `SKILL.md` links to the `references/` path, since that is what the agent reads.
 
+### Non-markdown assets
+
+A skill that ships code — `lib/`, `scripts/`, a `LICENSE` — keeps those files in
+its source tree too. `make build` copies anything that is not a `*.src.md`
+straight across, preserving the path:
+
+```
+engineering-src/wysiwyg-html-editor/lib/server.py
+  -> engineering/wysiwyg-html-editor/lib/server.py
+```
+
+Do not drop assets into the published tree by hand. `make clean` is `rm -rf`
+over it on the grounds that it is entirely machine-owned, and a hand-placed
+file there would be destroyed with nothing to regenerate it from.
+
 ### Adding a skill
 
 1. `mkdir -p marketing-src/<skill-name>`
 2. Write `marketing-src/<skill-name>/SKILL.src.md` with frontmatter (`name`, `description`, `version: 1.0.0`, `build-system`; `repo` optional).
-3. `make build` — every `*.src.md` under a `-src` tree is picked up automatically.
+3. `make build` — every `*.src.md` under a `-src` tree is picked up automatically,
+   and any other file in it is copied across verbatim.
 4. Commit the source and the generated output, and add a row (with its version) to the table above.
 
 A new category works the same way: create `<category>-src/`, and `make build`
