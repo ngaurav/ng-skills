@@ -20,7 +20,7 @@ SOURCES   := $(shell find $(SRC_TREES) -name '*.src.md' 2>/dev/null | sort)
 # <category>-src/a/b.src.md -> <category>/a/b.md
 out_path = $(shell echo '$(1)' | sed 's|-src/|/|; s|\.src\.md$$|.md|')
 
-.PHONY: build check verify orphans install-tool clean hash-generated
+.PHONY: build check verify orphans versions install-tool clean hash-generated
 
 build:
 	@test -n "$(SOURCES)" || { echo "ERROR: no *.src.md sources found"; exit 1; }
@@ -32,9 +32,24 @@ build:
 	done
 	@echo "ok: built $(words $(SOURCES)) file(s)"
 
-# Imports resolve, no cycles, nothing written.
-check:
+# Imports resolve, no cycles, nothing written. Plus the frontmatter contract.
+check: versions
 	@$(LITPROMPT) check . --match '**/*.src.md'
+
+# Every skill source declares a semver `version:` in its frontmatter. Bumped by
+# hand when a skill's behaviour changes, so an installed copy can be compared
+# against this repo. Checked on the source only: the published file is a copy.
+versions:
+	@status=0; \
+	for src in $$(find $(SRC_TREES) -name 'SKILL.src.md' 2>/dev/null | sort); do \
+		v=$$(awk 'NR>1 && /^---$$/{exit} /^version:/{print $$2; exit}' "$$src"); \
+		if [ -z "$$v" ]; then \
+			echo "MISSING VERSION: $$src has no 'version:' in its frontmatter"; status=1; \
+		elif ! echo "$$v" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+$$'; then \
+			echo "BAD VERSION: $$src has 'version: $$v', want MAJOR.MINOR.PATCH"; status=1; \
+		fi; \
+	done; \
+	[ $$status -eq 0 ] && echo "ok: every skill declares a semver version"; exit $$status
 
 # Every published file must trace back to a source. Catches a skill deleted
 # from the source tree but left behind in the installable one.
