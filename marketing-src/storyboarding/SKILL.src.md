@@ -1,7 +1,7 @@
 ---
 name: storyboarding
 description: "Storyboard any linear narrative built from discrete units: conference talks, keynotes, board decks, investor pitches, async/email decks, YouTube videos, shorts, demos, and product walkthroughs. Covers setup (format, audience, goal), the key-message tree, one-beat-one-message sequencing, so-what titles, the read-the-titles-only test, structural enhancement moves (cold open, callback, pattern interrupt, the turn), per-beat drafting via Draft-Drain-Refine, and a finishing pass. Use whenever someone wants to plan, structure, outline, or storyboard a presentation, deck, talk, or video, including vague intents like 'I need to present X to my team', 'help me structure my keynote', 'plan my board deck', 'script my YouTube video', or 'what slides should I include'. Phase 1 always produces storyboard.md; Phase 2 produces copy.md for slides or script.md for video."
-version: 2.0.0
+version: 2.1.0
 build-system: Generated. Edit the source file, not this file.
 repo: ngaurav/ng-skills
 ---
@@ -303,4 +303,26 @@ references. SKILL.md now owns only the two rules that hold in both branches
 new and falls directly out of the wrapper framing — once Phase 1 owns
 structure outright, editing structure during drafting is a defect that
 desynchronises storyboard.md from the output, and it needed saying.
+
+2026-08-29 — 2.1.0. slides.md's Headline anatomy said "this is the slide;
+everything else is support" without distinguishing the headline as a
+documented beat property (needed for copy.md and the titles-only test) from
+headline text actually rendered on screen. Followed literally, a talk cold
+open got a printed headline stacked on top of the cold-open image — text
+competing with the one thing the beat needed to do, which is land a single
+visual. Surfaced live: a talk's cold open was a single edited meme (a
+recast movie still with the line built into the image), and the drafted
+slide kept adding a redundant on-screen headline the image already carried.
+
+Fix is scoped to talk format only, not boardroom or async. Boardroom slides
+get read out of order and skipped ahead in, so the printed headline is load
+-bearing structure, not decoration; async has no presenter to say the
+headline out loud, so it has to be on the slide or it doesn't exist. Only
+talk has a presenter *and* an audience that cannot read and listen at once,
+which is the exact condition under which an image can carry the point alone
+and printed text becomes pure noise on top of it. Headline stays mandatory
+in the record (copy.md, titles-only test) in all three subformats — only
+whether it is *printed* becomes a talk-specific, image-only-beat exception,
+marked "(spoken only)" rather than omitted from the doc entirely, so the
+sequence-level checks still see one beat, one stated point.
 -->
