@@ -16,6 +16,10 @@ LITPROMPT ?= litprompt
 SRC_TREES := $(wildcard *-src)
 PUB_TREES := $(patsubst %-src,%,$(SRC_TREES))
 SOURCES   := $(shell find $(SRC_TREES) -name '*.src.md' 2>/dev/null | sort)
+# Everything else in a source tree (lib/, scripts/, LICENSE, ...) is copied
+# across verbatim. Assets live in the source tree rather than being placed
+# directly in the published one so `clean` stays a safe rm -rf.
+ASSETS    := $(shell find $(SRC_TREES) -type f ! -name '*.src.md' 2>/dev/null | sort)
 
 # <category>-src/a/b.src.md -> <category>/a/b.md
 out_path = $(shell echo '$(1)' | sed 's|-src/|/|; s|\.src\.md$$|.md|')
@@ -30,7 +34,13 @@ build:
 		$(LITPROMPT) build "$$src" -o "$$out" -q || exit 1; \
 		echo "  $$src -> $$out"; \
 	done
-	@echo "ok: built $(words $(SOURCES)) file(s)"
+	@for a in $(ASSETS); do \
+		out=$$(echo "$$a" | sed 's|-src/|/|'); \
+		mkdir -p "$$(dirname "$$out")"; \
+		cp -p "$$a" "$$out" || exit 1; \
+		echo "  $$a -> $$out"; \
+	done
+	@echo "ok: built $(words $(SOURCES)) file(s), copied $(words $(ASSETS)) asset(s)"
 
 # Imports resolve, no cycles, nothing written. Plus the frontmatter contract.
 check: versions
@@ -55,8 +65,11 @@ versions:
 # from the source tree but left behind in the installable one.
 orphans:
 	@status=0; \
-	for out in $$(find $(PUB_TREES) -name '*.md' 2>/dev/null | sort); do \
-		src=$$(echo "$$out" | sed 's|/|-src/|; s|\.md$$|.src.md|'); \
+	for out in $$(find $(PUB_TREES) -type f 2>/dev/null | sort); do \
+		case "$$out" in \
+			*.md) src=$$(echo "$$out" | sed 's|/|-src/|; s|\.md$$|.src.md|');; \
+			*)    src=$$(echo "$$out" | sed 's|/|-src/|');; \
+		esac; \
 		if [ ! -f "$$src" ]; then \
 			echo "ORPHAN: $$out has no source at $$src"; status=1; \
 		fi; \
@@ -79,7 +92,7 @@ verify: orphans
 	echo "ok: published files are in sync"
 
 hash-generated:
-	@find $(PUB_TREES) -name '*.md' 2>/dev/null | sort | xargs git hash-object
+	@find $(PUB_TREES) -type f 2>/dev/null | sort | xargs git hash-object
 
 install-tool:
 	go install github.com/tgvashworth/litprompt@latest
