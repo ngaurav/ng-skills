@@ -10,8 +10,12 @@ Phase 2 output for every slide subformat is **`copy.md`**.
 
 ## Anatomy
 
-**Headline** — the slide title. States the so-what. Carries all four qualities
-in craft.md. This is the slide; everything else is support.
+**Headline** — the slide's stated point. States the so-what. Carries all four
+qualities in craft.md. It is always written down, in `copy.md` and in the
+titles-only test — but it is not always printed on the slide. For a talk, a
+cold open or another image-only beat can deliver the headline verbally while
+the slide shows nothing but the visual; mark that beat's headline "spoken
+only" rather than adding on-screen text competing with the image.
 
 **Body** — the evidence: data, chart, diagram, bullets, image. Every element
 supports the headline and only the headline. If something on the slide argues
@@ -59,6 +63,11 @@ Same anatomy, different tolerances.
 **Talk.** The audience cannot read and listen at once. Every word on the slide
 is a word they are not hearing from you. Images and single numbers beat
 bullets. If a slide would work as a handout, it is too dense for a stage.
+Not every beat needs printed on-screen text at all — a cold open is often a
+single image (a photo, a meme, a screenshot) with the headline delivered as
+the first thing you say, not as a caption. Default to a printed headline;
+drop it only when the image alone lands the point and text would just be
+noise on top of it.
 
 **Boardroom.** Assume they read ahead, skip forward, and interrupt at the
 number they care about. The headline sequence has to survive being read out of
@@ -102,7 +111,9 @@ subformat does not use:
 
 **Slide [N]**
 
-- **Headline** — carries all four qualities from craft.md.
+- **Headline** — carries all four qualities from craft.md. Note "(spoken
+  only)" when a talk beat's headline is delivered verbally rather than
+  printed on the slide — the image-only cold-open case above.
 - **Body** — the supporting content.
 - **Subtitle** — Detail beats only.
 - **Footnote** — wherever data, a quote, or outside analysis appears.
