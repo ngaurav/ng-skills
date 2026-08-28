@@ -1,11 +1,18 @@
 # Video
 
 A beat is a shot: one visual state, held for a fixed number of seconds, doing
-one job. Read this with [craft.md](craft.md) at Step 5.
+one job. Read this with [craft.md](craft.md) in Phase 2.
 
 The difference that changes everything: **a beat has a duration**. A slide
 waits for you; a shot does not. Every beat spends a budget you cannot get
 back, and the audience can leave at any moment.
+
+That has one consequence per phase. **Phase 1** adds a duration field to the
+beat card — estimated in the storyboard, not here, because a runtime target
+constrains the sequence and budgeting it after the script exists means
+rewriting the script. **Phase 2** outputs `script.md`, not `copy.md`: a
+video's Phase 2 product is a spoken script on a timecode, delivered close to
+verbatim.
 
 ## Anatomy
 
@@ -75,7 +82,7 @@ not match the argument order. Never narrate the interface ("now I click the
 blue button"); narrate the intent ("now I connect the data source") and let
 the screen show the click. Cut every load and wait.
 
-## Working with the beat sheet
+## Phase 1 — what video adds to the storyboard
 
 The storyboard is the edit plan. Keep durations and visuals machine-readable
 in `storyboard.md` so the beat sheet can be handed straight to an editor —
@@ -86,15 +93,72 @@ human or agentic — without a translation step:
 - **Framework tag:** Solution
 - **Duration:** 6s
 - **Visual:** screen recording, dashboard, latency panel
-- **On-screen text:** 40ms
-- **Voiceover:** "Same query, same data — forty milliseconds."
-- **Audio note:** music drops out on the number
+- **Body guideline:** the before/after number, held long enough to read
 ```
+
+Duration and visual live here because both constrain the sequence. The
+voiceover, the on-screen text, and any audio note are Phase 2 and belong in
+`script.md` — writing them into the storyboard is how the two files start
+disagreeing about what the video says.
 
 Estimate total runtime by summing durations, and check it against the target
 before drafting a single line of voiceover. Discovering a 12-minute script
 was meant to be 5 minutes is a storyboard failure, and it is cheap to catch
 here and expensive to catch in the edit.
+
+## Phase 2 — drafting the script
+
+One beat at a time, in order, because a script's rhythm depends on what came
+immediately before it.
+
+For each beat, write the **voiceover first** and the on-screen text second.
+The spoken line is the load-bearing part; text supports it. Doing it the other
+way produces voiceover that reads a slide aloud.
+
+Then read the voiceover out loud against the beat's duration. This is the
+whole quality bar for a script and it is not optional:
+
+- **Over the duration?** Cut words, not the point. Roughly 2.5 words per
+  second at a natural pace, slower for anything the viewer has to absorb.
+- **Stumbled on it?** Rewrite the sentence. If you cannot say it cleanly,
+  neither can the person recording it.
+- **Reads like prose?** It will sound like prose. Sentences are shorter than
+  they would be on a page, and fragments are fine.
+
+Apply Draft → Drain → Refine (craft.md) to the spoken line as you would to any
+other copy. Drain matters more here than anywhere else in this skill, because
+every surviving word costs runtime.
+
+### Output: `script.md`
+
+Carry running timecodes so the script doubles as an edit plan.
+
+```markdown
+# Script: [Title]
+
+> Storyboard: [storyboard.md](./storyboard.md)
+> Format: [long-form / short / demo] · Runtime: [sum of durations]
+
+---
+
+## Beat 1: [headline] · 0:00–0:06 · 6s
+
+**Visual:** [talking head / screen recording / b-roll / motion graphic]
+**On-screen text:** [if any]
+
+**Voiceover:**
+> [the words, verbatim, as they will be said]
+
+**Audio note:** [music, silence, effect — if any]
+
+---
+
+## Beat 2: [headline] · 0:06–0:11 · 5s
+...
+```
+
+Recompute the running timecodes whenever a duration changes, and check the
+total against the target before handing the script over.
 
 ## Video-specific finishing checks
 

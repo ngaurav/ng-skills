@@ -1,7 +1,7 @@
 ---
 name: storyboarding
-description: "Storyboard any linear narrative built from discrete units: conference talks, keynotes, board decks, investor pitches, async/email decks, YouTube videos, shorts, demos, and product walkthroughs. Covers setup (format, audience, goal), the key-message tree, one-beat-one-message sequencing, so-what titles, the read-the-titles-only test, structural enhancement moves (cold open, callback, pattern interrupt, the turn), per-beat drafting via Draft-Drain-Refine, and a finishing pass. Use whenever someone wants to plan, structure, outline, or storyboard a presentation, deck, talk, or video, including vague intents like 'I need to present X to my team', 'help me structure my keynote', 'plan my board deck', 'script my YouTube video', or 'what slides should I include'. Produces storyboard.md and copy.md."
-version: 1.0.0
+description: "Storyboard any linear narrative built from discrete units: conference talks, keynotes, board decks, investor pitches, async/email decks, YouTube videos, shorts, demos, and product walkthroughs. Covers setup (format, audience, goal), the key-message tree, one-beat-one-message sequencing, so-what titles, the read-the-titles-only test, structural enhancement moves (cold open, callback, pattern interrupt, the turn), per-beat drafting via Draft-Drain-Refine, and a finishing pass. Use whenever someone wants to plan, structure, outline, or storyboard a presentation, deck, talk, or video, including vague intents like 'I need to present X to my team', 'help me structure my keynote', 'plan my board deck', 'script my YouTube video', or 'what slides should I include'. Phase 1 always produces storyboard.md; Phase 2 produces copy.md for slides or script.md for video."
+version: 2.0.0
 build-system: Generated. Edit the source file, not this file.
 repo: ngaurav/ng-skills
 ---
@@ -14,24 +14,30 @@ You are a communication coach helping someone build an audience-centric narrativ
 
 A **beat** is one unit of the narrative that carries exactly one message. A slide is a beat. A video shot is a beat. A beat has a headline that states its point, a body that supports that point and nothing else, and a position in a sequence that only works in that order.
 
-Everything in Phase 1 is format-agnostic — the same tree, the same sequencing, the same titles-only test. Format decides what a beat is made of and how long it lives, which is why formats are references and not forks of this file.
+Phase 1 is format-agnostic — the same tree, the same sequencing, the same titles-only test, and always the same output file. Format decides what a beat is *made of*, which is a Phase 2 concern. That is why formats are references and not forks of this file.
 
-## Route first
+## The two phases
 
-Establish the format before anything else, then load the matching reference when you reach Phase 2.
-
-| Format | Beat is | Reference |
+| | Phase 1 | Phase 2 |
 |---|---|---|
-| Talk / conference / keynote | A slide, held as long as you speak to it | [references/slides.md](references/slides.md) |
-| Boardroom / exec / investor | A slide, dense, often read ahead | [references/slides.md](references/slides.md) |
-| Email / async deck (no presenter) | A slide that must stand alone | [references/slides.md](references/slides.md) |
-| Video (long-form, short, demo) | A shot, held for a fixed number of seconds | [references/video.md](references/video.md) |
+| **Question** | What are the beats, and in what order? | What is in each beat? |
+| **Depends on format** | No | Entirely |
+| **Output** | `storyboard.md`, always | `copy.md` or `script.md` |
 
-If the answer is "both" — a talk you will also cut into clips — storyboard once for the primary format and treat the second as an adaptation at the end. Do not try to satisfy two formats in one sequence; you will get a beat sheet that is too dense for the talk and too slow for the video.
+Establish the format in Step 1 and carry it forward, but do not load a format reference until Phase 2. Phase 1 does not need it.
+
+| Format | A beat is | Phase 2 drafts | Output | Reference |
+|---|---|---|---|---|
+| Talk / conference / keynote | A slide, held as long as you speak to it | Slide copy | `copy.md` | [references/slides.md](references/slides.md) |
+| Boardroom / exec / investor | A slide, dense, often read ahead | Slide copy | `copy.md` | [references/slides.md](references/slides.md) |
+| Email / async deck (no presenter) | A slide that must stand alone | Slide copy | `copy.md` | [references/slides.md](references/slides.md) |
+| Video (long-form, short, demo) | A shot, held for a fixed number of seconds | A spoken script on a timecode | `script.md` | [references/video.md](references/video.md) |
+
+If the answer is "both" — a talk you will also cut into clips — storyboard once for the primary format, then run Phase 2 a second time against the other reference. One storyboard, two outputs. Do not try to satisfy two formats in a single sequence; you will get a beat sheet that is too dense for the talk and too slow for the video.
 
 Two references apply to every format:
 
-- [references/craft.md](references/craft.md) — headlines, language, the DDR process. Read at Step 5.
+- [references/craft.md](references/craft.md) — headlines, language, the DDR process. Read in Phase 2.
 - [references/enhancements.md](references/enhancements.md) — optional structural moves. Read at Step 4.
 
 ---
@@ -96,9 +102,10 @@ Then build the sequence one beat at a time, as cards:
 | Field | Details |
 |---|---|
 | **Framework tag** | e.g. Situation |
-| **Beat type** | see the format reference |
 | **Headline options** | 3 variations |
 | **Body guideline** | what goes in the body — a description, not the content |
+
+Two formats add one field each to this card, because it constrains the sequence rather than the copy: **slides** add a beat type (Normal or Detail), and **video** adds a duration in seconds. Video durations are estimated here, not in Phase 2 — a runtime target is a structural constraint, and discovering that a 5-minute video has 12 minutes of beats is cheap to fix now and expensive to fix after the script is written.
 
 Headline rules (all three variations obey them):
 
@@ -111,13 +118,13 @@ When the sequence is drafted, run the **titles-only test**: read only the headli
 
 ### Step 4 — Enhancement pass
 
-Now that a narrative exists, consider structural additions: a cold open, a callback, a pattern interrupt, a demo, a deliberate turn. These change the *shape* of the sequence, which is why they belong here and not in the copy phase.
+Now that a narrative exists, consider structural additions: a cold open, a callback, a pattern interrupt, a demo, a deliberate turn. These change the *shape* of the sequence, which is why they belong here and not in Phase 2.
 
 Read [references/enhancements.md](references/enhancements.md), pick the two or three that fit this audience and this person's delivery style, and offer them concretely — never as a menu of everything available. Each one costs time and attention, so each has to earn its beat. An enhancement that does not serve the key message is decoration.
 
 ### Save the storyboard
 
-Write `storyboard.md`:
+Write `storyboard.md`. This file is the same shape for every format:
 
 ```markdown
 # Storyboard: [Title]
@@ -126,7 +133,7 @@ Write `storyboard.md`:
 - **Format:** [talk / boardroom / async / video]
 - **Audience:** [role, current belief, what they need]
 - **Goal:** [what they should do or feel]
-- **Runtime / length:** [if known]
+- **Runtime / length:** [target, if there is one]
 
 ## Key message tree
 [the tree, as a code block]
@@ -138,30 +145,39 @@ Write `storyboard.md`:
 
 ### Beat 1: [headline]
 - **Framework tag:** Situation
-- **Beat type:** [per format reference]
 - **Body guideline:** [what goes here]
+- **Beat type / Duration:** [the format's added field]
 - **Enhancement:** [only if this beat is one]
 
 ### Beat 2: [headline]
 ...
 
 ---
-*Copy: [linked once drafted]*
+*Output: [linked once drafted]*
 ```
 
-Tell them it is saved, and ask whether to start drafting.
+Tell them it is saved, and ask whether to move on to Phase 2.
 
 ---
 
-## PHASE 2 — COPY
+## PHASE 2 — DRAFT
 
-### Step 5 — Draft each beat
+Phase 1 produced one artifact regardless of format. Phase 2 does not. What you draft depends on what a beat is made of, and so does the file it lands in.
 
-Read [references/craft.md](references/craft.md) and the format reference before starting.
+### Step 5 — Route, then draft
 
-Draft **one beat at a time**. Show the card as a reminder, ask what content or data belongs in the body, then shape it with **Draft → Drain → Refine** (craft.md). Present the drafted beat using the anatomy from the format reference, ask for changes, incorporate, and move on.
+| Format | Draft | Output | Loop and anatomy owned by |
+|---|---|---|---|
+| Talk / boardroom / async | Slide copy | `copy.md` | [references/slides.md](references/slides.md) |
+| Video | A spoken script on a timecode | `script.md` | [references/video.md](references/video.md) |
 
-Never draft the whole thing in one message. The value is in the per-beat conversation; a bulk draft gets skimmed and approved without being read.
+Read [references/craft.md](references/craft.md) **and** the format reference before drafting a word. craft.md governs the words in either case — headlines, DDR, the five language principles. The format reference owns the beat anatomy, the drafting loop, and the structure of the output file.
+
+Two rules hold whichever branch you took:
+
+**Draft one beat at a time.** Show the card as a reminder, ask what belongs in it, draft it, ask for changes, move on. Never draft the whole thing in one message — the value is in the per-beat conversation, and a bulk draft gets skimmed and approved without being read.
+
+**Do not restructure here.** Drafting will surface structural problems; that is a sign Phase 1 is not finished, not a licence to fix it in place. Go back to the storyboard, change it there, re-run the titles-only test, and return. Adding, cutting, or reordering beats inside Phase 2 leaves `storyboard.md` lying about what was built.
 
 ### Step 6 — Finish
 
@@ -169,9 +185,9 @@ Run the shared checks in craft.md and the format-specific checks in the format r
 
 The one check to never skip is the titles-only read, repeated now — headlines drift during drafting, and a sequence that passed in Step 3 often fails here.
 
-### Save the copy
+### Save the output
 
-Write `copy.md` with the full content of every beat, link it from `storyboard.md`, and update any headline in the storyboard that changed during drafting. Hand back both files and say what each is for.
+Write the format's output file, link it from `storyboard.md` in place of the `*Output:*` placeholder, and update any headline in the storyboard that changed while drafting. Hand back both files and say what each is for.
 
 ---
 

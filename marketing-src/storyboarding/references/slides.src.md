@@ -1,6 +1,12 @@
 # Slides
 
-A beat is a slide. Read this with [craft.md](craft.md) at Step 5.
+A beat is a slide. Read this with [craft.md](craft.md) in Phase 2.
+
+Phase 1 adds one field to the beat card: **beat type**, Normal or Detail
+(below). It belongs in the storyboard because it governs how many beats
+fit and whether the subformat tolerates them.
+
+Phase 2 output for every slide subformat is **`copy.md`**.
 
 ## Anatomy
 
@@ -84,6 +90,54 @@ Two rules that catch most problems:
 - **A slide with more than about six body elements is a Detail beat** whether
   you intended it or not. Either commit to that and give it reading time, or
   cut it down.
+
+## Phase 2 — drafting slide copy
+
+One slide at a time. Show the beat card from `storyboard.md` as a reminder,
+ask what content, data, or argument belongs in the body, then shape it with
+Draft → Drain → Refine (craft.md).
+
+Present each drafted slide with its full anatomy, omitting the parts the
+subformat does not use:
+
+**Slide [N]**
+
+- **Headline** — carries all four qualities from craft.md.
+- **Body** — the supporting content.
+- **Subtitle** — Detail beats only.
+- **Footnote** — wherever data, a quote, or outside analysis appears.
+- **Speaker notes** — presented formats only. Key phrases and transitions,
+  never a script.
+
+Ask for changes, incorporate them, move to the next slide.
+
+### Output: `copy.md`
+
+```markdown
+# Slide Copy: [Title]
+
+> Storyboard: [storyboard.md](./storyboard.md)
+> Format: [talk / boardroom / async]
+
+---
+
+## Slide 1: [headline]
+
+**Body:**
+[the body content]
+
+**Subtitle:** [Detail beats only]
+
+**Footnote:** [if any]
+
+**Speaker notes:** [presented formats only]
+
+---
+
+## Slide 2: [headline]
+...
+```
+
 
 ## Slide-specific finishing checks
 
