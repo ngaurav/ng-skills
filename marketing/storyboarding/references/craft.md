@@ -1,8 +1,8 @@
 # Craft: headlines, language, and the finishing pass
 
 Format-independent. Everything here applies to a slide headline, a video's
-on-screen text, and a spoken line equally. Read this at Step 5 alongside the
-format reference.
+on-screen text, and a spoken line equally. Read this in Phase 2 alongside the
+format reference, whichever one the format routed to.
 
 ## One beat, one message
 
