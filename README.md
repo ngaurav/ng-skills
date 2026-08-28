@@ -13,16 +13,16 @@ Sources carry internal notes and learnings that must not reach an installation.
 
 ## engineering
 
-| Skill | What it does |
-|---|---|
-| [agent-native-cli](engineering/agent-native-cli/SKILL.md) | Design and audit CLIs that agents drive through shell execution: non-interactive execution, uniform `--json` with a stdout/stderr channel contract, enumerating errors, token-efficient schemas, `agent-context` introspection, async job ledgers, profiles. Carries a blocker/friction/optimization rubric for reviewing an existing CLI. |
+| Skill | Version | What it does |
+|---|---|---|
+| [agent-native-cli](engineering/agent-native-cli/SKILL.md) | 1.0.0 | Design and audit CLIs that agents drive through shell execution: non-interactive execution, uniform `--json` with a stdout/stderr channel contract, enumerating errors, token-efficient schemas, `agent-context` introspection, async job ledgers, profiles. Carries a blocker/friction/optimization rubric for reviewing an existing CLI. |
 
 ## marketing
 
-| Skill | What it does |
-|---|---|
-| [landing-page-copywriter](marketing/landing-page-copywriter/SKILL.md) | Interactive 3-phase process for landing page copy: key message and CTAs, section outline, per-section drafting. |
-| [technical-blog-writing](marketing/technical-blog-writing/SKILL.md) | B2B/technical SEO blog posts that read human and rank: de-AI voice, post-type structures, E-E-A-T, sourcing, pre-publish checklist. Site-specific rules live in a per-repo profile generated from [site-profile-template.md](marketing/technical-blog-writing/references/site-profile-template.md). |
+| Skill | Version | What it does |
+|---|---|---|
+| [landing-page-copywriter](marketing/landing-page-copywriter/SKILL.md) | 1.0.0 | Interactive 3-phase process for landing page copy: key message and CTAs, section outline, per-section drafting. |
+| [technical-blog-writing](marketing/technical-blog-writing/SKILL.md) | 1.0.0 | B2B/technical SEO blog posts that read human and rank: de-AI voice, post-type structures, E-E-A-T, sourcing, pre-publish checklist. Site-specific rules live in a per-repo profile generated from [site-profile-template.md](marketing/technical-blog-writing/references/site-profile-template.md). |
 
 ## Install
 
@@ -47,7 +47,8 @@ why sources live in a separate tree rather than beside their output.
 ```bash
 make install-tool   # go install github.com/tgvashworth/litprompt@latest
 make build          # marketing-src/**/*.src.md -> marketing/**/*.md
-make check          # imports resolve, no cycles, nothing written
+make check          # frontmatter contract + imports resolve, no cycles, nothing written
+make versions       # every skill declares a semver version:
 make verify         # rebuild and fail if the published tree is stale or orphaned
 make clean          # delete the published trees (they are fully machine-owned)
 ```
@@ -56,6 +57,40 @@ The published trees **are committed**, so `npx skills add` and plain symlinks
 both work without a toolchain. CI runs `make verify` on every push and PR.
 
 ## Authoring
+
+### Frontmatter
+
+Every `SKILL.src.md` carries:
+
+| Field | Required | What it is |
+|---|---|---|
+| `name` | yes | Skill directory name. Must match the folder. |
+| `description` | yes | When to trigger the skill. Read by the agent at load time. |
+| `version` | yes | Semver, `MAJOR.MINOR.PATCH`. Bumped by hand. |
+| `build-system` | yes | Marks the published copy as generated. |
+| `repo` | no | Source repo, for an installed copy to trace back. |
+
+`make check` fails if any skill is missing `version` or has one that is not
+`MAJOR.MINOR.PATCH`.
+
+### Versioning a skill
+
+Versions are per skill, not per repo — each one moves on its own, and nothing
+is tagged or released. The number exists so an installed copy can be compared
+against this repo and so a changed instruction is visible in a diff.
+
+Bump it in the source, then `make build` to carry it into the published copy:
+
+- **Patch** — wording, typos, a clarified example. Same behaviour.
+- **Minor** — a new rule, section, or reference file. Existing behaviour holds.
+- **Major** — an instruction that reverses or removes previous guidance, or a
+  restructure that changes what the agent does with the same input.
+
+Author-only notes do not move the version: they never reach an installation,
+so the published file is byte-identical. Bump when the *published* file changes
+in a way that changes behaviour, and update the table above in the same commit.
+
+New skills start at `1.0.0`.
 
 ### Author-only notes
 
@@ -135,9 +170,9 @@ marketing/technical-blog-writing/          <- generated
 ### Adding a skill
 
 1. `mkdir -p marketing-src/<skill-name>`
-2. Write `marketing-src/<skill-name>/SKILL.src.md` with frontmatter (`name`, `description`, `build-system`; `repo` optional).
+2. Write `marketing-src/<skill-name>/SKILL.src.md` with frontmatter (`name`, `description`, `version: 1.0.0`, `build-system`; `repo` optional).
 3. `make build` — every `*.src.md` under a `-src` tree is picked up automatically.
-4. Commit the source and the generated output, and add a row to the table above.
+4. Commit the source and the generated output, and add a row (with its version) to the table above.
 
 A new category works the same way: create `<category>-src/`, and `make build`
 discovers it from the `*-src` glob with no config change.
