@@ -1,3 +1,7 @@
+# Installed skill trees and the lockfile describing them. Local to a checkout;
+# the published tree under <category>/ is what gets installed from.
 .agents/skills/
 .claude/skills/
+skills-lock.json
+
 __pycache__/
