@@ -1,7 +1,7 @@
 ---
 name: storyboarding
 description: "Storyboard any linear narrative built from discrete units: conference talks, keynotes, board decks, investor pitches, async/email decks, YouTube videos, shorts, demos, and product walkthroughs. Covers setup (format, audience, goal), the key-message tree, one-beat-one-message sequencing, so-what titles, the read-the-titles-only test, structural enhancement moves (cold open, callback, pattern interrupt, the turn), per-beat drafting via Draft-Drain-Refine, and a finishing pass. Use whenever someone wants to plan, structure, outline, or storyboard a presentation, deck, talk, or video, including vague intents like 'I need to present X to my team', 'help me structure my keynote', 'plan my board deck', 'script my YouTube video', or 'what slides should I include'. Phase 1 always produces storyboard.md; Phase 2 produces copy.md for slides or script.md for video."
-version: 2.1.0
+version: 2.2.0
 build-system: Generated. Edit the source file, not this file.
 repo: ngaurav/ng-skills
 ---
@@ -13,6 +13,8 @@ You are a communication coach helping someone build an audience-centric narrativ
 ## The unit is a beat
 
 A **beat** is one unit of the narrative that carries exactly one message. A slide is a beat. A video shot is a beat. A beat has a headline that states its point, a body that supports that point and nothing else, and a position in a sequence that only works in that order.
+
+A beat's one message can take one or more **frames** to deliver — a build on a slide, a second slide picking up the same point, a cut mid-shot in a video. Frame count is entirely a Phase 2 decision, made per beat as the copy or script is drafted, never in the storyboard. Most beats stay one frame; see craft.md.
 
 Phase 1 is format-agnostic — the same tree, the same sequencing, the same titles-only test, and always the same output file. Format decides what a beat is *made of*, which is a Phase 2 concern. That is why formats are references and not forks of this file.
 
@@ -179,6 +181,8 @@ Two rules hold whichever branch you took:
 
 **Do not restructure here.** Drafting will surface structural problems; that is a sign Phase 1 is not finished, not a licence to fix it in place. Go back to the storyboard, change it there, re-run the titles-only test, and return. Adding, cutting, or reordering beats inside Phase 2 leaves `storyboard.md` lying about what was built.
 
+Splitting a beat into frames, or collapsing frames back to one, is not restructuring — the beat's headline and position are unchanged, so it never touches `storyboard.md`. Restructuring means the message or the order changed; that is what routes back to Phase 1.
+
 ### Step 6 — Finish
 
 Run the shared checks in craft.md and the format-specific checks in the format reference. Report what you changed rather than narrating each check.
@@ -325,4 +329,68 @@ in the record (copy.md, titles-only test) in all three subformats — only
 whether it is *printed* becomes a talk-specific, image-only-beat exception,
 marked "(spoken only)" rather than omitted from the doc entirely, so the
 sequence-level checks still see one beat, one stated point.
+
+2026-08-29 — 2.2.0. Added **frames**: a beat can take more than one frame to
+deliver its single message — a build on a slide, a second slide continuing
+the point, a mid-shot cut in video. Prompted by a live case: a beat wanted
+to show "same weights, 30% -> 100%" and then, without changing the point,
+add a second chart showing not every model clears the bar under the same
+harness. That is one message told in two visual steps, and the skill had no
+vocabulary for it short of forcing it into two beats (which would have given
+it a second headline it doesn't have) or cramming both charts into one dense
+frame (which is what Detail beats already exist for, and this wasn't that —
+each half needed its own moment to register).
+
+Scoped hard to Phase 2. The user's own framing, kept close to verbatim
+because it is the load-bearing constraint: "the storyboard should not decide
+the frames... the copy.md and script.md will decide it." Phase 1 already
+carries this exact discipline for other content — body guideline is a
+description, not the content — so frames is the same rule applied one level
+down: Phase 1 says a beat needs a build; Phase 2 decides how many steps and
+what is in each.
+
+Reused the name "frame" one level below where it was rejected as the name
+for the *trunk* unit in 1.0.0 (see above: "reads as video-only, the mirror
+of the problem being solved"). No contradiction: that rejection was about
+naming the format-agnostic top-level unit, where "frame" would have biased
+the whole skill toward video. Used here, one level inside a beat, on video's
+own turf it is the literal term (a shot's frame), and for slides it's a
+plain metaphor borrow (a build "frames" a reveal) — it does not leak back up
+and re-bias the trunk vocabulary. Also simply the term the request used.
+
+Put the shared mechanics in craft.md, not SKILL.md, matching how every other
+format-crossing concept in this skill is homed. SKILL.md carries only two
+sentences: that frames exist and are Phase-2-only, and the one-line carve
+-out on the "do not restructure" rule saying a frame split isn't a
+restructure. Anatomy and output-template shape are format-specific and live
+in slides.md / video.md, same split as everything else Phase 2 owns.
+
+Added the explicit non-uniformity rule — frame count varies beat to beat,
+and a sequence where *every* beat is multi-frame is a sign the beats were
+cut too coarse, not that frames are working. Without this a multi-frame beat
+reads as the new default and the skill regresses into "author N slides per
+idea," which one-beat-one-message already exists to prevent.
+
+Also landed, same commit, prompted by the same conversation: an explicit
+verbosity rule — write an anatomy field only when it carries information,
+skip it rather than filling it with a placeholder. This wasn't new behavior
+so much as a rule the skill had been following inconsistently (Footnote
+"optional", Speaker notes "presented formats only" already did this) without
+ever stating it as a principle, and frames made the gap acute — a
+single-frame beat must not grow "Frame 1:" and an empty transition note just
+because the machinery now exists. Stated once in craft.md and referenced
+from both slides.md and video.md rather than repeated three times.
+
+Video also got an **audio mode** split (voiceover-driven / music-only /
+hybrid), independent of the existing long-form/short/demo subformat axis.
+Prompted directly: "in video too we have multiple subformats (video with
+music-only) or video with voice-over." Existing anatomy assumed Voiceover
+always exists and is the load-bearing field; that's false for a music-only
+cut, where Audio note (currently written as optional) is what actually
+carries the beat and Voiceover has nothing to write. Modeled as a second
+independent axis rather than a fourth row bolted onto the Subformats table,
+because it answers a different question (what carries the beat's meaning)
+than subformat does (how the beat is paced) — crossing them into one table
+would have produced cells like "short + music-only" that say nothing the two
+axes don't already say separately.
 -->

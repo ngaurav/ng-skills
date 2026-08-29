@@ -23,6 +23,7 @@ Sources carry internal notes and learnings that must not reach an installation.
 | Skill | Version | What it does |
 |---|---|---|
 | [landing-page-copywriter](marketing/landing-page-copywriter/SKILL.md) | 1.0.0 | Interactive 3-phase process for landing page copy: key message and CTAs, section outline, per-section drafting. |
+| [storyboarding](marketing/storyboarding/SKILL.md) | 2.2.0 | Storyboard any linear narrative — talks, board decks, async decks, videos — as a sequence of beats: setup, key-message tree, one-beat-one-message sequencing, structural enhancements, then per-beat drafting into slide copy or a timed video script. Beats can span multiple frames in Phase 2. |
 | [technical-blog-writing](marketing/technical-blog-writing/SKILL.md) | 1.0.0 | B2B/technical SEO blog posts that read human and rank: de-AI voice, post-type structures, E-E-A-T, sourcing, pre-publish checklist. Site-specific rules live in a per-repo profile generated from [site-profile-template.md](marketing/technical-blog-writing/references/site-profile-template.md). |
 
 ## Install

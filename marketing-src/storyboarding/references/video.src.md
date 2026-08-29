@@ -38,6 +38,26 @@ duplicates the voiceover makes the viewer read something they are already
 hearing, which is slower than either alone. Use text for the number, the name,
 or the term — the things that are hard to catch by ear.
 
+## Audio mode
+
+Independent of subformat (long-form/short/demo), a video is also either
+**voiceover-driven** or **music-only** — settle this in Phase 2 alongside
+subformat, because it decides which anatomy field actually carries the beat.
+
+**Voiceover-driven** — the default assumed above. Voiceover is the
+load-bearing field; on-screen text supports it; Audio note is optional.
+
+**Music-only.** There is no spoken line. Drop the Voiceover field from the
+beat's card entirely rather than writing "—" into it. On-screen text, or the
+visual and music alone, has to carry the point, the way a muted short does.
+Audio note stops being optional and becomes the primary cue on every beat —
+the music change, the beat it cuts on, the needle drop a visual change lands
+against.
+
+**Hybrid.** Mostly music, with voiceover only on the beats that need it.
+Keep the Voiceover field, but only on those beats; a beat with none states
+"none" rather than carrying an empty field with nothing to say.
+
 ## Pacing
 
 **The first three seconds decide the rest.** Retention charts fall off a cliff
@@ -56,6 +76,27 @@ starts. Tight audio is most of what separates amateur from professional.
 **Vary beat length deliberately.** A run of same-length beats becomes a
 metronome and the viewer stops hearing it. Follow three quick beats with one
 that breathes.
+
+## Frames
+
+A beat's duration does not have to be one static visual for its whole
+length. Reach for **frames** when the picture needs to change mid-beat while
+the point stays the same — the natural way to satisfy the visual-change rule
+above without spinning up a whole new beat: a chart filling the frame, then
+squeezing left as a second one fades in; a cut from wide to close; b-roll
+replacing a talking head mid-line.
+
+Default to one frame — Visual and Duration as already described, nothing
+extra to write. A multi-frame beat splits Visual and Duration across
+numbered frames that sum to the beat's total, and states how each arrives
+only when it is not a plain cut ("squeezes left as the second chart
+enters").
+
+Voiceover is still one continuous line for the whole beat — do not split it
+per frame unless the frames sit far enough apart in the beat to need their
+own. Instead, mark where in the line a transition should land ("cut lands on
+'but not every model'"), so the edit can sync to it. Read craft.md's Frames
+section first; this is video's shape of the same idea.
 
 ## Subformats
 
@@ -157,6 +198,25 @@ Carry running timecodes so the script doubles as an edit plan.
 ...
 ```
 
+A multi-frame beat splits Visual across numbered frames with their own
+sub-timecodes; Voiceover and Audio note stay once for the whole beat unless a
+frame genuinely needs its own line:
+
+```markdown
+## Beat 5: [headline] · 0:14–0:22 · 8s
+
+**Frame 1 · 0:14–0:18 (4s)**
+**Visual:** [what's on screen]
+
+**Frame 2 · 0:18–0:22 (4s), squeezes left as the second chart enters**
+**Visual:** [what's on screen]
+
+**Voiceover:**
+> [continuous line; note where the transition should land]
+
+**Audio note:** [if any]
+```
+
 Recompute the running timecodes whenever a duration changes, and check the
 total against the target before handing the script over.
 
@@ -167,7 +227,11 @@ Run these after the shared checks in craft.md.
 
 - **The first beat is a hook**, and it works with no prior context.
 - **Total runtime matches the target.** Sum the durations.
-- **No beat exceeds ~8 seconds without a visual change.**
+- **No beat exceeds ~8 seconds without a visual change.** A multi-frame beat
+  satisfies this automatically if a frame changes before the 8s mark.
+- **Voiceover appears only where audio mode says it should.** No empty
+  Voiceover field on a music-only script; a hybrid script states "none" on
+  beats without one rather than omitting the field inconsistently.
 - **It works muted.** Read only the on-screen text — for a short, that alone
   must carry the message.
 - **On-screen text does not duplicate the voiceover.**

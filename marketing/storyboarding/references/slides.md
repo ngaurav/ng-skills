@@ -33,6 +33,23 @@ body. Required on any slide carrying data, a quote, or third-party analysis.
 one number to emphasise. Not a script. Omit entirely for async decks; the
 slide has to do that work itself.
 
+## Frames
+
+Default is one frame: the Body above, whole, on one slide. Reach for more
+when the body needs to build — an animation within one slide (a chart
+entering, then a second series joining it), or a second slide picking up the
+same point where the first left off. Read craft.md's Frames section first;
+this is the slide-specific shape of it.
+
+A multi-frame slide keeps one Headline, Subtitle, Footnote, and Speaker notes
+for the whole beat — those describe the beat, not any one frame — and splits
+only the Body into numbered frames, each with its own content and, only when
+it says something new, its own short **frame text**: a qualifier or caveat
+shorter than a headline, landing as the frame does. State how a frame
+arrives only when it is not a plain cut — "fades in once the first chart
+settles," "squeezes left as the second chart enters." A hard cut to the next
+slide needs no note at all.
+
 ## Beat types
 
 **Normal** — one clear message, minimal body. Works everywhere.
@@ -120,7 +137,9 @@ subformat does not use:
 - **Speaker notes** — presented formats only. Key phrases and transitions,
   never a script.
 
-Ask for changes, incorporate them, move to the next slide.
+Ask for changes, incorporate them, move to the next slide. When a beat needs
+more than one frame, draft all of them together in this same turn — see
+Frames above — rather than treating each frame as its own beat.
 
 ### Output: `copy.md`
 
@@ -149,6 +168,26 @@ Ask for changes, incorporate them, move to the next slide.
 ...
 ```
 
+A multi-frame slide replaces `**Body:**` with numbered frames; everything
+else stays once per beat:
+
+```markdown
+## Slide 3: [headline]
+
+**Frame 1:**
+[body content]
+
+**Frame 2** (fades in after ~2s):
+[body content]
+**Frame text:** [only if this frame says something new on screen]
+
+**Subtitle:** [Detail beats only]
+
+**Footnote:** [if any]
+
+**Speaker notes:** [presented formats only]
+```
+
 ## Slide-specific finishing checks
 
 Run these after the shared checks in craft.md.
@@ -164,3 +203,6 @@ Run these after the shared checks in craft.md.
 - **Visuals are honest.** Axis, window, and chart type per craft.md.
 - **The appendix holds what was cut,** rather than the cut material creeping
   back into the main sequence.
+- **Frame count matches the beat's need.** A single-frame beat carries no
+  "Frame 1" label or transition note; a multi-frame beat only names a
+  transition where it isn't a plain cut.

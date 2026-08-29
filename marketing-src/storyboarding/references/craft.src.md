@@ -13,6 +13,33 @@ Test: say the beat's message out loud as a single sentence. If you need "and"
 to join two independent claims, it is two beats. If you need "and" to join a
 claim to its evidence, it is one beat and the evidence belongs in the body.
 
+## Frames within a beat
+
+A beat is one message. How many **frames** it takes to deliver that message
+is a separate question, answered in Phase 2 — never in the storyboard.
+
+A frame is a sub-unit of a beat: a build on the same slide, a second slide
+continuing the point, a mid-shot cut in a video. Every frame in a beat serves
+the beat's one headline. If a later frame argues something the headline
+doesn't cover, that is a new beat, not a new frame — go back to Phase 1.
+
+Default to one frame, and skip the frame machinery entirely when there is
+only one — no "Frame 1" label, nothing naming a transition. Reach for more
+only when the evidence needs a build: a reveal that lands better staged than
+shown at once, a comparison whose first half has to register before the
+second arrives, a visual that would be too busy shown all together.
+
+Frame count is not uniform across a sequence, and should not be. A beat that
+needs three frames next to beats that need one is normal — weight the
+content to what the beat's evidence requires, not to matching the beats
+around it. A sequence where every beat is multi-frame has usually just
+under-cut its beats, not found a genuine need for the device.
+
+Every anatomy field, frame or otherwise, is written only when it carries
+information. Skip a field rather than filling it with a placeholder or
+restating what its neighbor already says — a plain cut needs no transition
+note, a frame with nothing new on screen needs no frame text of its own.
+
 ## The so-what test
 
 The most common failure in a headline is describing the subject instead of
@@ -141,6 +168,8 @@ reference.
 - Body supports the headline and only the headline. Anything supporting a
   different point moves to that beat or gets cut.
 - Every claim that needs a source has one.
+- Frame count matches what the beat's evidence needs. Most beats are one
+  frame; a multi-frame beat could not have made its point in one.
 
 **Language**
 - Concise, Consistent, Clear, Punchy, Purposeful — applied, not just checked.

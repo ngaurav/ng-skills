@@ -1,7 +1,7 @@
 ---
 name: storyboarding
 description: "Storyboard any linear narrative built from discrete units: conference talks, keynotes, board decks, investor pitches, async/email decks, YouTube videos, shorts, demos, and product walkthroughs. Covers setup (format, audience, goal), the key-message tree, one-beat-one-message sequencing, so-what titles, the read-the-titles-only test, structural enhancement moves (cold open, callback, pattern interrupt, the turn), per-beat drafting via Draft-Drain-Refine, and a finishing pass. Use whenever someone wants to plan, structure, outline, or storyboard a presentation, deck, talk, or video, including vague intents like 'I need to present X to my team', 'help me structure my keynote', 'plan my board deck', 'script my YouTube video', or 'what slides should I include'. Phase 1 always produces storyboard.md; Phase 2 produces copy.md for slides or script.md for video."
-version: 2.1.0
+version: 2.2.0
 build-system: Generated. Edit the source file, not this file.
 repo: ngaurav/ng-skills
 ---
@@ -13,6 +13,8 @@ You are a communication coach helping someone build an audience-centric narrativ
 ## The unit is a beat
 
 A **beat** is one unit of the narrative that carries exactly one message. A slide is a beat. A video shot is a beat. A beat has a headline that states its point, a body that supports that point and nothing else, and a position in a sequence that only works in that order.
+
+A beat's one message can take one or more **frames** to deliver — a build on a slide, a second slide picking up the same point, a cut mid-shot in a video. Frame count is entirely a Phase 2 decision, made per beat as the copy or script is drafted, never in the storyboard. Most beats stay one frame; see craft.md.
 
 Phase 1 is format-agnostic — the same tree, the same sequencing, the same titles-only test, and always the same output file. Format decides what a beat is *made of*, which is a Phase 2 concern. That is why formats are references and not forks of this file.
 
@@ -178,6 +180,8 @@ Two rules hold whichever branch you took:
 **Draft one beat at a time.** Show the card as a reminder, ask what belongs in it, draft it, ask for changes, move on. Never draft the whole thing in one message — the value is in the per-beat conversation, and a bulk draft gets skimmed and approved without being read.
 
 **Do not restructure here.** Drafting will surface structural problems; that is a sign Phase 1 is not finished, not a licence to fix it in place. Go back to the storyboard, change it there, re-run the titles-only test, and return. Adding, cutting, or reordering beats inside Phase 2 leaves `storyboard.md` lying about what was built.
+
+Splitting a beat into frames, or collapsing frames back to one, is not restructuring — the beat's headline and position are unchanged, so it never touches `storyboard.md`. Restructuring means the message or the order changed; that is what routes back to Phase 1.
 
 ### Step 6 — Finish
 
