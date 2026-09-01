@@ -117,6 +117,29 @@ Two rules that catch most problems:
   you intended it or not. Either commit to that and give it reading time, or
   cut it down.
 
+## Visual system
+
+A deck needs its **visual system** settled once, before the first slide is
+drafted — otherwise each slide invents its own chart style and asset
+treatment, and the deck reads as several decks stapled together. Lighter than
+video's Visual world (see video.md): a deck has no cast and no spatial
+setting, only a look, and most of that look is usually inherited from an
+existing template rather than invented here.
+
+Settle two things before drafting:
+
+**Non-improvisable assets** — name anything that must be the literal real
+thing, not a redrawn stand-in: a logo or brand wordmark, an actual product
+screenshot, a real UI capture. Confirm these against the existing template
+rather than inventing them.
+
+**Real data** — name anything where the *chart form* is free to choose (see
+Body design above) but the *numbers* are not: any chart, table, or figure
+carrying data. The values still have to be the real ones, honestly
+proportioned (craft.md's Honesty section governs how).
+
+Record the answer once, at the top of `copy.md`.
+
 ## Phase 2 — drafting slide copy
 
 One slide at a time. Show the beat card from `storyboard.md` as a reminder,
@@ -148,6 +171,10 @@ Frames above — rather than treating each frame as its own beat.
 
 > Storyboard: [storyboard.md](./storyboard.md)
 > Format: [talk / boardroom / async]
+
+## Visual system
+- **Non-improvisable assets:** [logo, real screenshots, real product UI — or "none"]
+- **Real data:** [chart values, numbers that must stay accurate — or "none"]
 
 ---
 
@@ -201,6 +228,9 @@ Run these after the shared checks in craft.md.
   for async, never a verbatim script.
 - **Word count fits the subformat's row** in the table above.
 - **Visuals are honest.** Axis, window, and chart type per craft.md.
+- **Real data is accurate and assets are the real thing.** Chart values and
+  numbers match their source; anything named in Visual system as
+  non-improvisable is the actual asset, not a placeholder standing in for it.
 - **The appendix holds what was cut,** rather than the cut material creeping
   back into the main sequence.
 - **Frame count matches the beat's need.** A single-frame beat carries no

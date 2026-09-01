@@ -1,7 +1,7 @@
 ---
 name: storyboarding
 description: "Storyboard any linear narrative built from discrete units: conference talks, keynotes, board decks, investor pitches, async/email decks, YouTube videos, shorts, demos, and product walkthroughs. Covers setup (format, audience, goal), the key-message tree, one-beat-one-message sequencing, so-what titles, the read-the-titles-only test, structural enhancement moves (cold open, callback, pattern interrupt, the turn), per-beat drafting via Draft-Drain-Refine, and a finishing pass. Use whenever someone wants to plan, structure, outline, or storyboard a presentation, deck, talk, or video, including vague intents like 'I need to present X to my team', 'help me structure my keynote', 'plan my board deck', 'script my YouTube video', or 'what slides should I include'. Phase 1 always produces storyboard.md; Phase 2 produces copy.md for slides or script.md for video."
-version: 2.2.0
+version: 2.3.0
 build-system: Generated. Edit the source file, not this file.
 repo: ngaurav/ng-skills
 ---
@@ -89,13 +89,31 @@ How to run it:
 
 Iterate until they are satisfied. A weak tree cannot be rescued by good slides or good editing, so do not rush this step.
 
+#### Optional: the implied impression
+
+Some goals actively fail if stated as the key message — competence, trustworthiness, cleverness. "We are a smart team" reads as boasting and undercuts itself; demonstrating it through a sequence of genuine, hard-won discoveries lands the same impression without ever saying it.
+
+If the goal has one of these, ask: *"Is there an impression this should leave — one that would backfire if you said it outright?"* Capture it separately from the key message, as an **implied impression**, and never turn it into a beat's stated point. It has to be true of the sequence as a whole, not of any single beat — earn it by making sure each contributing beat is an honest, verifiable discovery, not a hint dropped toward the impression itself.
+
+This is not the key message. The key message is still stated explicitly, in one beat (craft.md's finishing check covers that). The implied impression is a second thing the sequence can carry alongside it — seen, never said.
+
 ### Step 3 — Sequence the beats
 
 Confirm a framework first:
 
 > "I'll default to **Situation → Problem → Solution → Impact**. Want that, or something else?"
 
-Alternatives: **Before / After / How**; **Challenge / Insight / Recommendation / Next steps**; **Context / Complication / Resolution** (Pyramid Principle); or their own.
+Alternatives: **Before / After / How**; **Challenge / Insight / Recommendation / Next steps**; **Context / Complication / Resolution** (Pyramid Principle); **Assumption → Discovery**, repeated (a journey — see below); a **Platter / Collage** (see below); or their own.
+
+Most frameworks move toward a stated conclusion — asserted up front (Pyramid Principle) or revealed at the end, but always said by some beat. Two shapes work differently and are worth naming on their own:
+
+**Journey (Assumption → Discovery, repeated).** Still linear — each cycle sets up the next, and the titles-only test below applies in full, unrelaxed. What differs is *when* the key message lands: instead of stating it up front and proving it, the sequence withholds it and lets the audience arrive at it through repeated, genuine reversals (a belief stated, then overturned by a real finding, cycle after cycle, closing on a payoff). This is also the natural home for an implied impression (Step 2) — competence read through the act of discovery rather than asserted by any beat.
+
+**Platter / Collage.** Not linear in the same sense — beats relate to each other by a shared thread (a theme, a person, a product) rather than each one setting up the next. Two rules relax here, and only here:
+- The **Linked** headline quality (craft.md) loosens from "sets up the next beat" to "shares the thread."
+- The **titles-only test** still runs, but the bar changes from *"read in this order, does it tell one continuous argument"* to *"read as a set, do these cohere around one thread, with nothing that belongs to a different collection."* Reordering a couple of beats should not break it.
+
+A platter can leave the key message entirely unstated by design — the tree from Step 2 still gets built, but as the thread holding the collection together, not a thesis any beat has to say out loud. (craft.md's finishing checks carry this exception explicitly.)
 
 Then build the sequence one beat at a time, as cards:
 
@@ -139,6 +157,8 @@ Write `storyboard.md`. This file is the same shape for every format:
 
 ## Key message tree
 [the tree, as a code block]
+
+**Implied impression (never stated on screen):** [if any]
 
 ## Framework
 [e.g. Situation → Problem → Solution → Impact]

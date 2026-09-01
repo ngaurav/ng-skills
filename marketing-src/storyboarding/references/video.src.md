@@ -20,7 +20,9 @@ verbatim.
 without a duration is a slide in disguise.
 
 **Visual** — what is on screen: talking head, screen recording, b-roll, motion
-graphic, or a full-frame text card.
+graphic, or a full-frame text card. Once a cast and setting exist (see Visual
+world below), state each beat's Visual in those terms rather than reinventing
+the world per beat.
 
 **On-screen text** — the headline, when there is one. Same four qualities as a
 slide headline (craft.md), but shorter — it has to be readable in the time the
@@ -57,6 +59,46 @@ against.
 **Hybrid.** Mostly music, with voiceover only on the beats that need it.
 Keep the Voiceover field, but only on those beats; a beat with none states
 "none" rather than carrying an empty field with nothing to say.
+
+## Visual world
+
+Independent of subformat and audio mode, a video needs its **cast and
+setting** decided once, before any beat's Visual field is drafted. Skip this
+and every beat invents its own answer — a motion graphic here, a screen
+recording there — and the video reads as several videos cut together, however
+tight the sequencing is.
+
+Settle these in one conversational pass, the same way Step 1 asks
+format/audience/goal together:
+
+**Cast** — who or what appears on screen carrying the story. Pick one
+register, not a mix:
+- Abstract non-human icons or glyphs (an agent-as-mark, a browser-as-icon) —
+  cheapest to keep consistent, no rights issues, fits a technical or product
+  register.
+- A mascot or character with presence, able to react at key beats.
+- No characters — the story is carried entirely by UI, data, and typography,
+  a teardown register.
+- A real human presenter or actor.
+
+**World** — is the environment one consistent space the camera moves within
+across every beat, several distinct themed environments cut between by
+topic, or no spatial metaphor at all (pure graphic/typographic, no "room" of
+any kind)?
+
+**Non-improvisable assets** — name anything that must be the literal real
+thing, not an illustrator's reinterpretation: a logo or wordmark, an actual
+product screen recording, real or historical footage.
+
+**Real data** — name anything where the *style* is free to invent but the
+*numbers* are not: chart values, benchmark results, statistics. A bar chart
+can be drawn in whatever visual language fits the world; the bars still have
+to plot the real numbers, proportioned honestly (craft.md's Honesty section
+governs how).
+
+Record the answer once, at the top of `script.md` (see the output template
+below), so a beat's Visual field can say "the agent-glyph enters the terminal
+room" without re-explaining what that means every time.
 
 ## Pacing
 
@@ -149,6 +191,10 @@ here and expensive to catch in the edit.
 
 ## Phase 2 — drafting the script
 
+Before the first beat, cast and setting should already be settled (Visual
+world, above) — a beat's Visual field states where in that world the beat
+happens, not a new world of its own.
+
 One beat at a time, in order, because a script's rhythm depends on what came
 immediately before it.
 
@@ -179,6 +225,12 @@ Carry running timecodes so the script doubles as an edit plan.
 
 > Storyboard: [storyboard.md](./storyboard.md)
 > Format: [long-form / short / demo] · Runtime: [sum of durations]
+
+## Visual world
+- **Cast:** [who/what appears on screen]
+- **World:** [one consistent space / themed environments / abstract]
+- **Non-improvisable assets:** [logo, real footage, real product recording — or "none"]
+- **Real data:** [chart values, benchmark numbers that must stay accurate — or "none"]
 
 ---
 
@@ -229,6 +281,11 @@ Run these after the shared checks in craft.md.
 - **Total runtime matches the target.** Sum the durations.
 - **No beat exceeds ~8 seconds without a visual change.** A multi-frame beat
   satisfies this automatically if a frame changes before the 8s mark.
+- **Visual stays inside the established world.** No beat introduces an
+  unexplained new character, prop, or environment that Visual world didn't
+  name.
+- **Real data is accurate.** Any chart, number, or benchmark on screen matches
+  its source, even where the visual style around it was invented.
 - **Voiceover appears only where audio mode says it should.** No empty
   Voiceover field on a music-only script; a hybrid script states "none" on
   beats without one rather than omitting the field inconsistently.

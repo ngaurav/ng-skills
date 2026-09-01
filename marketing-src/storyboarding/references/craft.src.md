@@ -69,12 +69,17 @@ Every headline carries all four:
 - **Concise** — readable at a glance, before the audience starts listening
   again. If it wraps to three lines it is a body, not a headline.
 - **Linked** — it sets up the next beat. Headlines that each stand alone
-  produce a list; headlines that hand off produce an argument.
+  produce a list; headlines that hand off produce an argument. (Relaxed to
+  "shares the thread" for a Platter/Collage framework — SKILL.md Step 3 — the
+  one case where beats are not meant to hand off to each other.)
 
 ## Headlines tell the story
 
 Read only the headlines, in order, out loud. That reading must convey the
-whole argument with nothing else present.
+whole argument with nothing else present. (For a Platter/Collage framework —
+SKILL.md Step 3 — "the whole argument" means the collection reads as one
+coherent thread, not a single chained argument; the rest of this section
+still applies with that substitution.)
 
 This is the single highest-value check in the skill. Run it when the sequence
 is first drafted and again after drafting, because headlines drift during
@@ -158,10 +163,16 @@ Run these regardless of format. Format-specific checks live in the format
 reference.
 
 **Story**
-- Titles-only read tells the whole story.
+- Titles-only read tells the whole story. (For a Platter/Collage — SKILL.md
+  Step 3 — "tells the whole story" means the set coheres around one thread.)
 - Every beat makes exactly one point.
 - The sequence follows the chosen framework, with no unexplained jumps.
-- One beat explicitly states the key message. It is not merely implied.
+- One beat explicitly states the key message, unless the framework is a
+  Platter/Collage, which may leave it unstated by design — check instead that
+  the thread is legible from the collection as a whole. (An implied
+  impression, if the tree has one — SKILL.md Step 2 — is a separate thing and
+  must stay unstated regardless of framework; this check is about the key
+  message only.)
 
 **Beat level**
 - Headline gives the so-what, not the subject.

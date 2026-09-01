@@ -1,7 +1,7 @@
 ---
 name: storyboarding
 description: "Storyboard any linear narrative built from discrete units: conference talks, keynotes, board decks, investor pitches, async/email decks, YouTube videos, shorts, demos, and product walkthroughs. Covers setup (format, audience, goal), the key-message tree, one-beat-one-message sequencing, so-what titles, the read-the-titles-only test, structural enhancement moves (cold open, callback, pattern interrupt, the turn), per-beat drafting via Draft-Drain-Refine, and a finishing pass. Use whenever someone wants to plan, structure, outline, or storyboard a presentation, deck, talk, or video, including vague intents like 'I need to present X to my team', 'help me structure my keynote', 'plan my board deck', 'script my YouTube video', or 'what slides should I include'. Phase 1 always produces storyboard.md; Phase 2 produces copy.md for slides or script.md for video."
-version: 2.2.0
+version: 2.3.0
 build-system: Generated. Edit the source file, not this file.
 repo: ngaurav/ng-skills
 ---
@@ -89,13 +89,31 @@ How to run it:
 
 Iterate until they are satisfied. A weak tree cannot be rescued by good slides or good editing, so do not rush this step.
 
+#### Optional: the implied impression
+
+Some goals actively fail if stated as the key message — competence, trustworthiness, cleverness. "We are a smart team" reads as boasting and undercuts itself; demonstrating it through a sequence of genuine, hard-won discoveries lands the same impression without ever saying it.
+
+If the goal has one of these, ask: *"Is there an impression this should leave — one that would backfire if you said it outright?"* Capture it separately from the key message, as an **implied impression**, and never turn it into a beat's stated point. It has to be true of the sequence as a whole, not of any single beat — earn it by making sure each contributing beat is an honest, verifiable discovery, not a hint dropped toward the impression itself.
+
+This is not the key message. The key message is still stated explicitly, in one beat (craft.md's finishing check covers that). The implied impression is a second thing the sequence can carry alongside it — seen, never said.
+
 ### Step 3 — Sequence the beats
 
 Confirm a framework first:
 
 > "I'll default to **Situation → Problem → Solution → Impact**. Want that, or something else?"
 
-Alternatives: **Before / After / How**; **Challenge / Insight / Recommendation / Next steps**; **Context / Complication / Resolution** (Pyramid Principle); or their own.
+Alternatives: **Before / After / How**; **Challenge / Insight / Recommendation / Next steps**; **Context / Complication / Resolution** (Pyramid Principle); **Assumption → Discovery**, repeated (a journey — see below); a **Platter / Collage** (see below); or their own.
+
+Most frameworks move toward a stated conclusion — asserted up front (Pyramid Principle) or revealed at the end, but always said by some beat. Two shapes work differently and are worth naming on their own:
+
+**Journey (Assumption → Discovery, repeated).** Still linear — each cycle sets up the next, and the titles-only test below applies in full, unrelaxed. What differs is *when* the key message lands: instead of stating it up front and proving it, the sequence withholds it and lets the audience arrive at it through repeated, genuine reversals (a belief stated, then overturned by a real finding, cycle after cycle, closing on a payoff). This is also the natural home for an implied impression (Step 2) — competence read through the act of discovery rather than asserted by any beat.
+
+**Platter / Collage.** Not linear in the same sense — beats relate to each other by a shared thread (a theme, a person, a product) rather than each one setting up the next. Two rules relax here, and only here:
+- The **Linked** headline quality (craft.md) loosens from "sets up the next beat" to "shares the thread."
+- The **titles-only test** still runs, but the bar changes from *"read in this order, does it tell one continuous argument"* to *"read as a set, do these cohere around one thread, with nothing that belongs to a different collection."* Reordering a couple of beats should not break it.
+
+A platter can leave the key message entirely unstated by design — the tree from Step 2 still gets built, but as the thread holding the collection together, not a thesis any beat has to say out loud. (craft.md's finishing checks carry this exception explicitly.)
 
 Then build the sequence one beat at a time, as cards:
 
@@ -139,6 +157,8 @@ Write `storyboard.md`. This file is the same shape for every format:
 
 ## Key message tree
 [the tree, as a code block]
+
+**Implied impression (never stated on screen):** [if any]
 
 ## Framework
 [e.g. Situation → Problem → Solution → Impact]
@@ -393,4 +413,114 @@ because it answers a different question (what carries the beat's meaning)
 than subformat does (how the beat is paced) — crossing them into one table
 would have produced cells like "short + music-only" that say nothing the two
 axes don't already say separately.
+
+2026-09-01 — 2.3.0. Added **visual world** to video.md: cast, setting, and named
+non-improvisable real assets, settled once in Phase 2 before any beat's Visual
+field is drafted. Prompted live: per-beat Visual fields were being invented
+independently beat to beat ("motion graphic", "screen recording", "full-frame
+text card") with no established cast or setting connecting them, which is what
+actually produces the generic, interchangeable feel across videos that
+motivated the request — one-beat-one-message sequencing was fine, but nothing
+above the beat level constrained the world these beats live in.
+
+Modeled as a third Phase-2-once axis alongside subformat and audio mode, same
+shape as audio mode's addition in 2.2.0: settle it in one conversational pass
+before drafting, record the answer once (script.md header), then every beat's
+Visual field references it instead of re-deriving it. Considered making this a
+Phase 1 concern instead — cast/setting feels structural — but rejected: Phase 1
+governs what the beats are and in what order, which is genuinely
+format-independent (a slide deck has no "cast"), while a video's cast is a
+Phase-2, video-only decision about what a beat is *made of*. Keeping it there
+instead of pulling it into SKILL.src.md keeps the trunk format-agnostic,
+matching how audio mode was scoped.
+
+Also split assets into two named categories rather than one, prompted directly
+in the same conversation: "non-improvisable assets" (the pixels themselves
+must be real — a logo, real footage, a real product recording) is a different
+constraint from "real data" (the visual style is free to invent, but the
+numbers plotted must stay accurate — a chart, a benchmark result). Conflating
+them would have let a stylized-but-fabricated chart pass the same check as a
+placeholder screen recording, which are different failure modes: one is a
+missing asset, the other is a credibility problem. Cross-referenced craft.md's
+existing Honesty section rather than restating it, since honest charting is
+already covered there and applies whether or not this skill is doing video.
+
+Also added a scoped-down counterpart to slides.md: **Visual system**, carrying
+only the two categories that still apply — non-improvisable assets and real
+data — with no Cast or World, since a deck has no characters and no spatial
+setting. Requested directly, same conversation, specifically as a lesser
+version rather than the full video treatment: "add some similar notes in
+slides too. It will have lesser features compared to a visual world of a
+video." Named differently on purpose (Visual *system*, not Visual *world*) so
+the two references never look like the same concept at different lengths —
+video's is a place and cast, slides' is a look, and the name should say so at
+a glance. Both link forward from their own reference only (video.md's "see
+Visual world below" / slides.md's "see video.md" mention), not from craft.md
+or SKILL.md, keeping the shared trunk uninvolved in a decision that's still
+entirely format-specific.
+
+2026-09-01 — 2.3.0 (same batch). Added the **implied impression** to Step 2:
+a second thing the tree can carry, distinct from the key message, that must
+never be stated by any beat because stating it is what destroys it. Surfaced
+live on a benchmark-recap video: the stated key message was a real insight
+("the real cost of a browser agent isn't tokens, it's turns"), but the
+client's actual goal underneath it was "the key message is that we are smart
+team. That will not be said explicitly. But it will come through a
+collection of insights... Our smartness will be implied all we have to do is
+be counterintuitive and interesting." That is a second, coexisting target the
+Step 2 loop as written had no vocabulary for — it only ever asked for the one
+sentence the audience should repeat, and "we're competent" is not a sentence
+anyone should repeat, it is an impression that only survives by never being
+spoken.
+
+Placed as an optional sub-step immediately after the tree is locked, not
+before — an implied impression only makes sense once there is a real
+argument (genuine discoveries, real evidence) for it to ride on. Asking for
+it earlier would invite inventing beats to flatter the impression directly,
+exactly the failure mode it exists to avoid.
+
+Deliberately did not give it its own storyboard field beyond one line under
+the tree, and gave it no dedicated finishing check of its own. A checklist
+item like "does this build the impression?" is unfalsifiable in the way "does
+one beat state the key message" is not — the only real check is the existing
+one-beat-one-message and honest-evidence discipline, applied normally. The
+single line in storyboard.md exists so the intent isn't lost between Phase 1
+and Phase 2, not to create a second thing to grade beats against.
+
+2026-09-01 — 2.3.0 (same batch). Named two framework shapes in Step 3 that the
+existing alternatives list didn't cover: **Journey** (Assumption → Discovery,
+repeated) and **Platter / Collage**. Prompted directly: "we mention only type
+of framework which is a linear journey [meaning: only ONE shape, the
+Pyramid-style linear argument]... Let's add more example to capture other
+kinds of stories... it is also linearly connected, so the title rule applies,
+but it maybe relaxed in some exceptional cases, specially when the story
+framework is more like a platter or a collage." Every existing alternative
+(Situation→Problem→Solution→Impact, Before/After/How,
+Challenge/Insight/Recommendation/Next steps, Context/Complication/Resolution)
+is the same underlying shape — Pyramid Principle, conclusion asserted then
+proved — just relabeled per genre. Journey and Platter are not relabels; they
+change what the titles-only test and the "state the key message" check are
+actually checking for.
+
+Journey needed no rule changes, only a name — it is still fully linear, the
+titles-only test still applies unrelaxed, same as every Pyramid-style
+alternative. What's different is *when* the key message lands (withheld and
+arrived-at instead of asserted-then-proved), which is exactly the shape the
+implied-impression addition above already existed to support. Naming it
+closes the loop: that addition was scoped to "Step 2, optional," with no
+framework in Step 3 that obviously produces it — Journey is that framework.
+
+Platter/Collage is the real exception, and scoped narrowly on purpose: it
+relaxes exactly two things (the Linked headline quality, and the titles-only
+bar) and nothing else. One-beat-one-message, honest evidence, and the tree
+itself all still hold — a platter is not "no discipline," it is "the
+discipline of a shared thread instead of a chained argument." Rejected making
+this a third phase-1 axis alongside format/subformat; it is a framework
+choice, made in the same breath as picking Situation→Problem→Solution→Impact
+vs. something else, not a new question. Rejected relaxing the rules globally
+instead of gating them behind this specific framework — the whole value of
+"Linked" and the titles-only test is that they catch a sequence that doesn't
+actually cohere, and loosening them by default would make that catch
+disappear for every framework, not just the one where it's genuinely not the
+right test.
 -->
