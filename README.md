@@ -17,6 +17,7 @@ Sources carry internal notes and learnings that must not reach an installation.
 |---|---|---|
 | [agent-native-cli](engineering/agent-native-cli/SKILL.md) | 1.0.0 | Design and audit CLIs that agents drive through shell execution: non-interactive execution, uniform `--json` with a stdout/stderr channel contract, enumerating errors, token-efficient schemas, `agent-context` introspection, async job ledgers, profiles. Carries a blocker/friction/optimization rubric for reviewing an existing CLI. |
 | [wysiwyg-html-editor](engineering/wysiwyg-html-editor/SKILL.md) | 1.0.0 | Serve a folder of HTML over a local server that lets the user highlight text or click an element and leave an inline comment; the agent edits the page and it reloads with a walkthrough of the changes. Ships `lib/` and `scripts/`. Includes print-fidelity guidance for resumes and reports. |
+| [skill-build-system](engineering/skill-build-system/SKILL.md) | 1.3.1 | How to organize a `*-src` / published skill tree and how to update a skill. |
 
 ## marketing
 
