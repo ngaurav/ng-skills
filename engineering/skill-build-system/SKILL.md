@@ -36,8 +36,9 @@ copy. Never the other way around.
   this file is generated; edit the source, not this file.
 - Every skill carries a `version` frontmatter field, semver, `MAJOR.MINOR.PATCH`.
   See Versioning below.
-- Optional: a `source-repo` frontmatter field naming the repository that holds the
-  source. Use either the local folder path or the full repository URL, such as
+- Every skill carries a `source-repo` frontmatter field naming the repository
+  that holds the source. Use either the local folder path or the full repository
+  URL, such as
   `~/Developer/example` or `https://gitlab.com/owner/example`. Never use an
   ambiguous `owner/name` shorthand because it does not identify the host.
 
@@ -108,5 +109,5 @@ Either way the source edit is the one that matters, and the generated file is
 never edited by hand.
 
 Adding a skill: `mkdir -p <category>-src/<name>`, write `SKILL.src.md` with
-`name`, `description`, `version: 1.0.0`, and `build-system` frontmatter
-(`source-repo` optional), `make build`, commit both trees.
+`name`, `description`, `version: 1.0.0`, `build-system`, and `source-repo`
+frontmatter, `make build`, then commit both trees.
