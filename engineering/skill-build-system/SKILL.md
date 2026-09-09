@@ -1,7 +1,7 @@
 ---
 name: skill-build-system
 description: Organize and update agent skills that use the litprompt source/published split. Use when adding a skill, editing a SKILL.md, seeing a *-src tree, capturing a learning, or deciding what belongs in a published skill versus an author-only note.
-version: 2.0.0
+version: 2.1.0
 build-system: Generated. Edit the source file, not this file.
 source-repo: https://github.com/ngaurav/ng-skills
 ---
@@ -41,6 +41,13 @@ copy. Never the other way around.
   URL, such as
   `~/Developer/example` or `https://gitlab.com/owner/example`. Never use an
   ambiguous `owner/name` shorthand because it does not identify the host.
+- The repository's `make check` must enforce required skill frontmatter; do not
+  assume the compiler validates this contract. At minimum, check every
+  `SKILL.src.md` for a semver `version` and a non-empty `source-repo`, reject the
+  legacy `repo` key, and ensure `check` depends on those validations. Before
+  reporting a build as valid, inspect the Makefile when necessary and confirm
+  the required targets actually ran; a successful compiler check or sync check
+  alone proves neither metadata completeness nor contract compliance.
 
 ## What ships
 

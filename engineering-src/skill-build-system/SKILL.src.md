@@ -1,7 +1,7 @@
 ---
 name: skill-build-system
 description: Organize and update agent skills that use the litprompt source/published split. Use when adding a skill, editing a SKILL.md, seeing a *-src tree, capturing a learning, or deciding what belongs in a published skill versus an author-only note.
-version: 2.0.0
+version: 2.1.0
 build-system: Generated. Edit the source file, not this file.
 source-repo: https://github.com/ngaurav/ng-skills
 ---
@@ -41,6 +41,13 @@ copy. Never the other way around.
   URL, such as
   `~/Developer/example` or `https://gitlab.com/owner/example`. Never use an
   ambiguous `owner/name` shorthand because it does not identify the host.
+- The repository's `make check` must enforce required skill frontmatter; do not
+  assume the compiler validates this contract. At minimum, check every
+  `SKILL.src.md` for a semver `version` and a non-empty `source-repo`, reject the
+  legacy `repo` key, and ensure `check` depends on those validations. Before
+  reporting a build as valid, inspect the Makefile when necessary and confirm
+  the required targets actually ran; a successful compiler check or sync check
+  alone proves neither metadata completeness nor contract compliance.
 
 ## What ships
 
@@ -198,4 +205,11 @@ why it failed, not just what won.
 - 2026-09-03: Moved this skill from agentrhq/agentr-context to ngaurav/ng-skills.
   It is the layout's how-to, not product context, so it does not belong in a
   company context pack. `repo` now points at ngaurav/ng-skills.
+
+- 2026-09-09: A consuming repo's `make check` passed with `repo:` instead of the
+  required `source-repo:` because its Makefile only validated `version`, while
+  the compiler accepted the metadata structurally and `verify` only checked
+  source/output equality. Require frontmatter validation targets to be wired
+  into `check`, and require agents to confirm those targets ran before calling
+  a build compliant.
 -->
