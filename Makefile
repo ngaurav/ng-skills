@@ -24,7 +24,7 @@ ASSETS    := $(shell find $(SRC_TREES) -type f ! -name '*.src.md' 2>/dev/null | 
 # <category>-src/a/b.src.md -> <category>/a/b.md
 out_path = $(shell echo '$(1)' | sed 's|-src/|/|; s|\.src\.md$$|.md|')
 
-.PHONY: build check verify orphans versions install-tool clean hash-generated
+.PHONY: build check verify orphans versions source-repos install-tool clean hash-generated
 
 build:
 	@test -n "$(SOURCES)" || { echo "ERROR: no *.src.md sources found"; exit 1; }
@@ -43,7 +43,7 @@ build:
 	@echo "ok: built $(words $(SOURCES)) file(s), copied $(words $(ASSETS)) asset(s)"
 
 # Imports resolve, no cycles, nothing written. Plus the frontmatter contract.
-check: versions
+check: versions source-repos
 	@$(LITPROMPT) check . --match '**/*.src.md'
 
 # Every skill source declares a semver `version:` in its frontmatter. Bumped by
@@ -60,6 +60,27 @@ versions:
 		fi; \
 	done; \
 	[ $$status -eq 0 ] && echo "ok: every skill declares a semver version"; exit $$status
+
+# Every skill source points back to its editable repository with an
+# unambiguous local path or full HTTP(S) URL. Reject the former `repo` key so
+# host-less owner/name values cannot return unnoticed.
+source-repos:
+	@status=0; \
+	for src in $$(find $(SRC_TREES) -name 'SKILL.src.md' 2>/dev/null | sort); do \
+		source_repo=$$(awk 'NR>1 && /^---$$/{exit} /^source-repo:/{sub(/^source-repo:[[:space:]]*/, ""); print; exit}' "$$src"); \
+		legacy_repo=$$(awk 'NR>1 && /^---$$/{exit} /^repo:/{print; exit}' "$$src"); \
+		if [ -n "$$legacy_repo" ]; then \
+			echo "LEGACY REPO FIELD: $$src uses 'repo:', want 'source-repo:'"; status=1; \
+		elif [ -z "$$source_repo" ]; then \
+			echo "MISSING SOURCE REPO: $$src has no 'source-repo:' in its frontmatter"; status=1; \
+		else \
+			case "$$source_repo" in \
+				http://*|https://*|/*|./*|../*|~/*) ;; \
+				*) echo "BAD SOURCE REPO: $$src has '$$source_repo', want a local path or full URL"; status=1;; \
+			esac; \
+		fi; \
+	done; \
+	[ $$status -eq 0 ] && echo "ok: every skill declares an unambiguous source repository"; exit $$status
 
 # Every published file must trace back to a source. Catches a skill deleted
 # from the source tree but left behind in the installable one.

@@ -1,9 +1,9 @@
 ---
 name: wysiwyg-html-editor
 description: "Turn a folder of static HTML pages into a live WYSIWYG editing surface: the user highlights text or clicks an element and leaves an inline comment, the agent edits the HTML and the page reloads with a walkthrough of what changed. Use when the user asks to make pages interactive, comment on a page, edit an HTML page visually, set up inline feedback, iterate on a resume/report/handout that must match a printed page, stop its local server, or remove the feedback layer."
-version: 1.0.0
+version: 1.0.1
 build-system: Generated. Edit the source file, not this file.
-repo: ngaurav/ng-skills
+source-repo: https://github.com/ngaurav/ng-skills
 ---
 
 # WYSIWYG HTML Editor
@@ -190,4 +190,6 @@ Learnings
     partly hand-owned, which is the invariant the whole two-tree split exists
     to protect. Copying from source keeps `clean` honest and makes `verify`
     catch a hand-edited published asset for free.
+  2026-09-09 — Replaced the ambiguous `repo` shorthand with the mandatory
+    `source-repo` full URL required by build-system 2.0.0.
 -->

@@ -1,9 +1,9 @@
 ---
 name: agent-native-cli
 description: "Design and audit command-line tools that AI agents drive through shell execution. Use when building, extending, reviewing, or code-generating any CLI an agent will call. Covers non-interactive execution, uniform --json with a stdout/stderr channel contract, errors that enumerate valid values, unknown-flag rejection, idempotent mutations, token-efficient schemas and truncation, pre-computed aggregates, agent-context introspection, --wait plus a job ledger, profiles, --deliver sinks, cross-CLI vocabulary consistency, and schema-enforced consistency. Carries a blocker/friction/optimization severity rubric so the same document works for reviewing an existing CLI."
-version: 1.0.0
+version: 1.0.1
 build-system: Generated. Edit the source file, not this file.
-repo: ngaurav/ng-skills
+source-repo: https://github.com/ngaurav/ng-skills
 ---
 
 # Agent-Native CLIs
@@ -727,4 +727,7 @@ Author-only. Append one dated line per correction or rejected approach.
   design and audit paths interleave — the severity lines live under each
   principle — so an agent loads the whole file either way and a second file
   would only add an import.
+
+- 2026-09-09: Replaced the ambiguous `repo` shorthand with the mandatory
+  `source-repo` full URL required by build-system 2.0.0.
 -->

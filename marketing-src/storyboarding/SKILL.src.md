@@ -1,9 +1,9 @@
 ---
 name: storyboarding
 description: "Storyboard any linear narrative built from discrete units: conference talks, keynotes, board decks, investor pitches, async/email decks, YouTube videos, shorts, demos, and product walkthroughs. Covers setup (format, audience, goal), the key-message tree, one-beat-one-message sequencing, so-what titles, the read-the-titles-only test, structural enhancement moves (cold open, callback, pattern interrupt, the turn), per-beat drafting via Draft-Drain-Refine, and a finishing pass. Use whenever someone wants to plan, structure, outline, or storyboard a presentation, deck, talk, or video, including vague intents like 'I need to present X to my team', 'help me structure my keynote', 'plan my board deck', 'script my YouTube video', or 'what slides should I include'. Phase 1 always produces storyboard.md; Phase 2 produces copy.md for slides or script.md for video."
-version: 2.3.0
+version: 2.3.1
 build-system: Generated. Edit the source file, not this file.
-repo: ngaurav/ng-skills
+source-repo: https://github.com/ngaurav/ng-skills
 ---
 
 # Storyboarding
@@ -523,4 +523,7 @@ instead of gating them behind this specific framework — the whole value of
 actually cohere, and loosening them by default would make that catch
 disappear for every framework, not just the one where it's genuinely not the
 right test.
+
+- 2026-09-09: Replaced the ambiguous `repo` shorthand with the mandatory
+  `source-repo` full URL required by build-system 2.0.0.
 -->
