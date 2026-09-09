@@ -1,9 +1,9 @@
 ---
 name: skill-build-system
 description: Organize and update agent skills that use the litprompt source/published split. Use when adding a skill, editing a SKILL.md, seeing a *-src tree, capturing a learning, or deciding what belongs in a published skill versus an author-only note.
-version: 1.3.1
+version: 2.0.0
 build-system: Generated. Edit the source file, not this file.
-repo: ngaurav/ng-skills
+repo: https://github.com/ngaurav/ng-skills
 ---
 
 # Skill build system
@@ -36,8 +36,10 @@ copy. Never the other way around.
   this file is generated; edit the source, not this file.
 - Every skill carries a `version` frontmatter field, semver, `MAJOR.MINOR.PATCH`.
   See Versioning below.
-- Optional: a `repo` frontmatter field (`owner/name`) naming the GitHub
-  repo that holds the source. Skip it when the skill is local-only.
+- Optional: a `repo` frontmatter field naming the repository that holds the
+  source. Use either the local folder path or the full repository URL, such as
+  `~/Developer/example` or `https://gitlab.com/owner/example`. Never use an
+  ambiguous `owner/name` shorthand because it does not identify the host.
 
 ## What ships
 
