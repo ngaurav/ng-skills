@@ -3,7 +3,7 @@ name: skill-build-system
 description: Organize and update agent skills that use the litprompt source/published split. Use when adding a skill, editing a SKILL.md, seeing a *-src tree, capturing a learning, or deciding what belongs in a published skill versus an author-only note.
 version: 2.0.0
 build-system: Generated. Edit the source file, not this file.
-repo: https://github.com/ngaurav/ng-skills
+source-repo: https://github.com/ngaurav/ng-skills
 ---
 
 # Skill build system
@@ -36,7 +36,7 @@ copy. Never the other way around.
   this file is generated; edit the source, not this file.
 - Every skill carries a `version` frontmatter field, semver, `MAJOR.MINOR.PATCH`.
   See Versioning below.
-- Optional: a `repo` frontmatter field naming the repository that holds the
+- Optional: a `source-repo` frontmatter field naming the repository that holds the
   source. Use either the local folder path or the full repository URL, such as
   `~/Developer/example` or `https://gitlab.com/owner/example`. Never use an
   ambiguous `owner/name` shorthand because it does not identify the host.
@@ -109,7 +109,7 @@ never edited by hand.
 
 Adding a skill: `mkdir -p <category>-src/<name>`, write `SKILL.src.md` with
 `name`, `description`, `version: 1.0.0`, and `build-system` frontmatter
-(`repo` optional), `make build`, commit both trees.
+(`source-repo` optional), `make build`, commit both trees.
 
 <!-- @
 ## Learnings log
@@ -141,6 +141,9 @@ why it failed, not just what won.
   local folder path or a full repository URL. The shorthand assumed GitHub and
   could not distinguish repositories hosted on GitHub, GitLab, or elsewhere;
   the skill's own metadata now uses its full GitHub URL.
+
+- 2026-09-09: Renamed the `repo` frontmatter field to `source-repo`; `repo`
+  did not state clearly that the locator points to the skill's editable source.
 
 - 2026-08-28: Added a required semver `version` frontmatter field and the
   bump rules. Considered a repo-level version or git tags instead: rejected,
