@@ -1,7 +1,7 @@
 ---
 name: storyboarding
 description: "Storyboard any linear narrative built from discrete units: conference talks, keynotes, board decks, investor pitches, async/email decks, YouTube videos, shorts, demos, and product walkthroughs. Covers setup (format, audience, goal), the key-message tree, one-beat-one-message sequencing, so-what titles, the read-the-titles-only test, structural enhancement moves (cold open, callback, pattern interrupt, the turn), per-beat drafting via Draft-Drain-Refine, and a finishing pass. Use whenever someone wants to plan, structure, outline, or storyboard a presentation, deck, talk, or video, including vague intents like 'I need to present X to my team', 'help me structure my keynote', 'plan my board deck', 'script my YouTube video', or 'what slides should I include'. Phase 1 always produces storyboard.md; Phase 2 produces copy.md for slides or script.md for video."
-version: 2.3.1
+version: 2.4.0
 build-system: Generated. Edit the source file, not this file.
 source-repo: https://github.com/ngaurav/ng-skills
 ---
@@ -53,6 +53,9 @@ Ask these together, in one conversational message:
 1. **Format** — which row of the routing table above.
 2. **Audience** — their role, what they already believe about this topic, and what they need from you (a decision? awareness? alignment?).
 3. **Goal** — what should they *do or feel* at the end? Compel an action, provoke urgency, or create a shared view.
+4. **Assets already in hand or being captured, rather than generated** — screenshots, screen recordings, demo footage, logos, data files (a CSV, a spreadsheet). Ask plainly: *"Is any of this built from something you're importing or shooting, rather than writing from scratch?"*
+
+An asset from this list is a fixed input, not a draft: its content (and, for a recording, its duration) is only known once it exists, and it will not be redrafted like a headline or a body guideline. Note which beats each asset belongs to as the sequence is built in Step 3 — a screenshot fills a whole beat, but a logo or a CSV is usually a small prop inside one, not a beat of its own. This matters most for video, where an imported recording makes that beat's duration provisional rather than authored (see Step 3), but the same distinction applies to a screenshot dropped into a slide or a real customer logo on a proof beat — flag it here regardless of format.
 
 Summarise your understanding back. Then ask: *"Does this capture it? Anything to refine before we build the message?"*
 
@@ -127,6 +130,8 @@ Then build the sequence one beat at a time, as cards:
 
 Two formats add one field each to this card, because it constrains the sequence rather than the copy: **slides** add a beat type (Normal or Detail), and **video** adds a duration in seconds. Video durations are estimated here, not in Phase 2 — a runtime target is a structural constraint, and discovering that a 5-minute video has 12 minutes of beats is cheap to fix now and expensive to fix after the script is written.
 
+**Exception: a beat built on an imported or captured asset (Step 1, question 4) does not get an estimated duration.** Mark it "raw asset — duration TBD" instead of guessing a number. A screen recording's real length is unknown until it is shot, and even once shot it will change again in editing (cuts, speed-ups, held pauses) — an estimate here is not provisional, it is simply wrong, and wrong numbers in a runtime-constrained sequence are worse than an honest gap. Add an **Asset** field to that beat's card naming what it is and where it comes from. Total runtime for a sequence with any such beats is therefore a range or a placeholder until the asset exists, not a number to hit exactly.
+
 Headline rules (all three variations obey them):
 
 - States the **so what**, not the subject. "Offshore manufacturing lifts margin 20%" beats "Analysis of seven manufacturing options."
@@ -163,12 +168,16 @@ Write `storyboard.md`. This file is the same shape for every format:
 ## Framework
 [e.g. Situation → Problem → Solution → Impact]
 
+## Assets to import or shoot
+[only if Step 1 question 4 surfaced any — one line per asset: what it is, which beat(s) it belongs to, and whether it fills a whole beat or is a small prop inside one. Omit this section entirely if nothing is imported.]
+
 ## Beats
 
 ### Beat 1: [headline]
 - **Framework tag:** Situation
 - **Body guideline:** [what goes here]
-- **Beat type / Duration:** [the format's added field]
+- **Beat type / Duration:** [the format's added field, or "raw asset — duration TBD" per the exception in Step 3]
+- **Asset:** [only if this beat is built on an imported/captured asset]
 - **Enhancement:** [only if this beat is one]
 
 ### Beat 2: [headline]
