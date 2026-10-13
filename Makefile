@@ -75,7 +75,7 @@ source-repos:
 			echo "MISSING SOURCE REPO: $$src has no 'source-repo:' in its frontmatter"; status=1; \
 		else \
 			case "$$source_repo" in \
-				http://*|https://*|/*|./*|../*|~/*) ;; \
+				http://*|https://*|/*|./*|../*|\~/*) ;; \
 				*) echo "BAD SOURCE REPO: $$src has '$$source_repo', want a local path or full URL"; status=1;; \
 			esac; \
 		fi; \
