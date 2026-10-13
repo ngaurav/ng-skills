@@ -27,6 +27,12 @@ Sources carry internal notes and learnings that must not reach an installation.
 | [storyboarding](marketing/storyboarding/SKILL.md) | 2.3.0 | Storyboard any linear narrative — talks, board decks, async decks, videos — as a sequence of beats: setup, key-message tree, one-beat-one-message sequencing, structural enhancements, then per-beat drafting into slide copy or a timed video script. Beats can span multiple frames in Phase 2. Video establishes a cast, setting, and named real assets before per-beat drafting. |
 | [technical-blog-writing](marketing/technical-blog-writing/SKILL.md) | 1.0.0 | B2B/technical SEO blog posts that read human and rank: de-AI voice, post-type structures, E-E-A-T, sourcing, pre-publish checklist. Site-specific rules live in a per-repo profile generated from [site-profile-template.md](marketing/technical-blog-writing/references/site-profile-template.md). |
 
+## others
+
+| Skill | Version | What it does |
+|---|---|---|
+| [arc-agi-toolkit](others/arc-agi-toolkit/SKILL.md) | 1.0.0 | Play ARC-AGI-3 games through the official Python toolkit with a persistent session, inspect animation frames, record attempts, and report scores. |
+
 ## Install
 
 ```bash
